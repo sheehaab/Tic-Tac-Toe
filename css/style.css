@@ -1,0 +1,125 @@
+body{
+	background-color: #221e1f;
+	font-family: cursive;
+}
+
+html main{ /* this HTML tag to override the normalize file*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+
+main .score-container{
+	display: flex;
+	justify-content: space-between;
+	width:38%;
+}
+
+main .score-container{
+	color:#FFF;
+
+}
+
+main .score-container .player{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+main .score-container .player span:first-child{
+	font-size: 1.5em;
+}
+
+main .score-container .player span:last-child{
+	font-size: 1.2em;
+}
+
+main .start-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin:10px 0;
+}
+
+main .start-container button{
+	background-color: #FFF;
+	border:none;
+	padding:10px 20px;
+}
+
+main .tic-container{
+	display:flex;
+	flex-direction: column;
+	width:38%;
+	height:70vh;
+	margin:20px 0;
+}
+
+
+main .tic-container .row1,
+main .tic-container .row2,
+main .tic-container .row3{
+	height:33.3333%;
+	display: flex;
+}
+
+main .tic-container .row1 .column1,
+main .tic-container .row1 .column2{
+	border-bottom: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	width:33.3333%;
+}
+
+main .tic-container .row1 .column3{
+	width:33.3333%;
+	border-bottom: 1px solid #FFF;
+}
+
+main .tic-container .row2 .column1,
+main .tic-container .row2 .column2{
+	border-bottom: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	width:33.3333%;
+}
+
+main .tic-container .row2 .column3{
+	width:33.3333%;
+	border-bottom: 1px solid #FFF;
+}
+
+
+main .tic-container .row3 .column1,
+main .tic-container .row3 .column2{
+	border-right: 1px solid #FFF;
+	width:33.3333%;
+}
+
+main .tic-container .row3 .column3{
+	width:33.3333%;
+}
+
+
+main .tic-container button{
+	cursor:pointer;
+	background: none;
+	border:none;
+	font-size:8em;
+	color:#fffd;
+	text-shadow: 0 0 10px #fffd, 0 0 20px #fffd, 0 0 30px #f6ee32, 0 0 40px #f6ee32, 0 0 50px #f6ee32, 0 0 60px #f6ee32, 0 0 70px #f6ee32
+}
+
+main .who-wins{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+main .who-wins span{
+	color:#FFF;
+	font-size:2em;
+}

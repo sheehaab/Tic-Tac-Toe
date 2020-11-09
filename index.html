@@ -5,11 +5,46 @@
 		<meta name="viewport" content="width=device-width, intial-scale=1">
 		<title>Tic-Tac-Toe</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"> 
 	</head>
 	<body>
-		<div class="containter">
-			
-		</div>
+		<main>
+			<div class="score-container">
+				<div class="player">
+					<span>Player</span>
+					<span>score:20</span>
+				</div>
+				<div class="player">
+					<span>Player</span>
+					<span>score:20</span>
+				</div>
+			</div>
+			<div class="start-container">
+				<button>Start</button>
+			</div>
+			<div class="tic-container">
+				<div class="row1">
+					<button class="column1"><div>X</div></button>
+					<button class="column2"><div>X</div></button>
+					<button class="column3"><div>X</div></button>
+				</div>
+
+				<div class="row2">
+					<button class="column1">O</button>
+					<button class="column2">O</button>
+					<button class="column3">O</button>
+				</div>
+
+				<div class="row3">
+					<button class="column1">X</button>
+					<button class="column2">O</button>
+					<button class="column3">X</button>
+				</div>
+			</div>
+			<div class="who-wins">
+				<span>You Wins!</span>
+			</div>
+		</main>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>
