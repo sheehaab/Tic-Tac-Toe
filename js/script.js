@@ -25,13 +25,24 @@ const displayGame = (() =>{
 	let playerScore = 0;
 	let playerOne = Player('player1',playerScore,'x',true);
 	let playerTwo = Player('player2',playerScore,'o',false);
+	let zeroZero = document.getElementById('zero-zero');
+	let zeroOne = document.getElementById('zero-one');
+	let zeroTwo = document.getElementById('zero-two');
+	let oneZero = document.getElementById('one-zero');
+	let oneOne = document.getElementById('one-one');
+	let oneTwo = document.getElementById('one-two');
+	let twoZero = document.getElementById('two-zero');
+	let twoOne = document.getElementById('two-one');
+	let twoTwo = document.getElementById('two-two');
+	let resetButton = document.getElementById('reset');
+	const gameButtons = document.getElementById('ticBtns');
+	const allButtons = gameButtons.querySelectorAll('button');
+
 	//publice
 	let displayGameBoard = ()=>{
 		for(let i=0;i<GameBoard.board.length;i++){
 			
 				console.log(GameBoard.board[i])
-				const gameButtons = document.getElementById('ticBtns');
-				const allButtons = gameButtons.querySelectorAll('button');
 				allButtons.forEach((btn)=>{
 					btn.addEventListener('click',function(e){
 						if(e.target.parentElement.id === 'zero'){
@@ -46,29 +57,19 @@ const displayGame = (() =>{
 	}
 
 	let gameLogic = ()=>{
-		let zeroZero = document.getElementById('zero-zero');
-		let zeroOne = document.getElementById('zero-one');
-		let zeroTwo = document.getElementById('zero-two');
-		let oneZero = document.getElementById('one-zero');
-		let oneOne = document.getElementById('one-one');
-		let oneTwo = document.getElementById('one-two');
-		let twoZero = document.getElementById('two-zero');
-		let twoOne = document.getElementById('two-one');
-		let twoTwo = document.getElementById('two-two');
 
 		zeroZero.addEventListener('click',function(e){
 			if(GameBoard.board[0][0] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[0][0] = 'O';
-				zeroZero.textContent = 'O';
-				console.log(playerOne.clicked)
+				zeroZero.textContent = GameBoard.board[0][0];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[0][0] = 'X';
-					zeroZero.textContent = 'X';
+					zeroZero.textContent = GameBoard.board[0][0];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -84,15 +85,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[0][1] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[0][1] = 'O';
-				zeroOne.textContent = 'O';
-				console.log(playerOne.clicked)
+				zeroOne.textContent = GameBoard.board[0][1];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[0][1] = 'X';
-					zeroOne.textContent = 'X';
+					zeroOne.textContent = GameBoard.board[0][1];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -106,15 +106,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[0][2] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[0][2] = 'O';
-				zeroTwo.textContent = 'O';
-				console.log(playerOne.clicked)
+				zeroTwo.textContent = GameBoard.board[0][2];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[0][2] = 'X';
-					zeroTwo.textContent = 'X';
+					zeroTwo.textContent = GameBoard.board[0][2];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -128,15 +127,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[1][0] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[1][0] = 'O';
-				oneZero.textContent = 'O';
-				console.log(playerOne.clicked)
+				oneZero.textContent = GameBoard.board[1][0];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[1][0] = 'X';
-					oneZero.textContent = 'X';
+					oneZero.textContent = GameBoard.board[1][0];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -150,15 +148,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[1][1] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[1][1] = 'O';
-				oneOne.textContent = 'O';
-				console.log(playerOne.clicked)
+				oneOne.textContent = GameBoard.board[1][1];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[1][1] = 'X';
-					oneOne.textContent = 'X';
+					oneOne.textContent = GameBoard.board[1][1];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -172,15 +169,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[1][2] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[1][2] = 'O';
-				oneTwo.textContent = 'O';
-				console.log(playerOne.clicked)
+				oneTwo.textContent = GameBoard.board[1][2];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[1][2] = 'X';
-					oneTwo.textContent = 'X';
+					oneTwo.textContent = GameBoard.board[1][2];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -194,15 +190,13 @@ const displayGame = (() =>{
 			if(GameBoard.board[2][0] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[2][0] = 'O';
-				twoZero.textContent = 'O';
-				console.log(playerOne.clicked)
-				displayGameBoard();
+				twoZero.textContent = GameBoard.board[2][0];
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[2][0] = 'X';
-					twoZero.textContent = 'X';
+					twoZero.textContent = GameBoard.board[2][0];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -216,15 +210,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[2][1] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[2][1] = 'O';
-				twoOne.textContent = 'O';
-				console.log(playerOne.clicked)
+				twoOne.textContent = GameBoard.board[2][1];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[2][1] = 'X';
-					twoOne.textContent = 'X';
+					twoOne.textContent = GameBoard.board[2][1];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -238,15 +231,14 @@ const displayGame = (() =>{
 			if(GameBoard.board[2][2] === ''){
 				if(playerOne.clicked === true){
 				GameBoard.board[2][2] = 'O';
-				twoTwo.textContent = 'O';
-				console.log(playerOne.clicked)
+				twoTwo.textContent = GameBoard.board[2][2];
 				displayGameBoard();
 				playerOne.clicked = false;
 				playerTwo.clicked = true;
 				
 				}else if(playerTwo.clicked === true){
 					GameBoard.board[2][2] = 'X';
-					twoTwo.textContent = 'X';
+					twoTwo.textContent = GameBoard.board[2][2];
 					displayGameBoard();
 					playerTwo.clicked = false;
 					playerOne.clicked = true;
@@ -260,6 +252,19 @@ const displayGame = (() =>{
 	let gameOver = ()=>{
 		
 	}
+
+	reset.addEventListener('click',function(){
+		for(let i=0;i<GameBoard.board.length;i++){
+			for(let j=0;j<GameBoard.board.length;j++){
+				GameBoard.board[i][j] = '';
+				allButtons.forEach((btn)=>{
+					btn.textContent = '';
+				})
+
+			}
+		}
+	})
+
 
 	return {gameLogic,gameOver};
 })();
