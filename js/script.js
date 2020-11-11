@@ -333,6 +333,7 @@ const displayGame = (() =>{
 				}
 
 				//column logic
+
 				if(winner === false){
 					if(e.target.className === 'column1'){
 						if(GameBoard.board[1][0] === GameBoard.board[0][0] && GameBoard.board[1][0] === GameBoard.board[2][0]){
@@ -364,6 +365,23 @@ const displayGame = (() =>{
 							}
 						}
 					}
+				}
+
+				//x logic
+				if(winner === false){
+					if(GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2])
+						if(GameBoard.board[1][1] !== '' && GameBoard.board[0][0] !== '' && GameBoard.board[2][2] !== ''){
+							console.log('winner x');
+							winner = true;
+						}
+				}
+
+				if(winner === false){
+					if(GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0])
+						if(GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== ''){
+							console.log('winner x2');
+							winner = true;
+						}
 				}
 
 			})
