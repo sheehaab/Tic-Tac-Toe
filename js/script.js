@@ -302,6 +302,8 @@ const displayGame = (() =>{
 	let gameOver = ()=>{
 		allButtons.forEach((btn)=>{
 			btn.addEventListener('click',function(e){
+				
+				//logic for row wins
 				if(winner === false){
 					if(e.target.parentElement.id === 'zero'){
 						if(GameBoard.board[0][1] === GameBoard.board[0][0] && GameBoard.board[0][1] === GameBoard.board[0][2]){
@@ -309,8 +311,6 @@ const displayGame = (() =>{
 							winner = true;
 						}
 					}
-				}else{
-					return;
 				}
 
 				if(winner === false){
@@ -321,8 +321,6 @@ const displayGame = (() =>{
 
 						}
 					}
-				}else{
-					return;
 				}
 
 				if(winner === false){
@@ -330,12 +328,44 @@ const displayGame = (() =>{
 						if(GameBoard.board[2][1] === GameBoard.board[2][0] && GameBoard.board[2][1] === GameBoard.board[2][2]){
 							console.log('winner in the two')
 							winner = true;
-
 						}
 					}
-				}else{
-					return;
 				}
+
+				//column logic
+				if(winner === false){
+					if(e.target.className === 'column1'){
+						if(GameBoard.board[1][0] === GameBoard.board[0][0] && GameBoard.board[1][0] === GameBoard.board[2][0]){
+							if(GameBoard.board[0][0] !== '' && GameBoard.board[1][0] !== '' && GameBoard.board[2][0] !== '') {
+								winner=true;
+								console.log('winner in the col 1')
+							}
+						}
+					}
+				}
+
+				if(winner === false){
+					if(e.target.className === 'column2'){
+						if(GameBoard.board[1][1] === GameBoard.board[0][1] && GameBoard.board[1][1] === GameBoard.board[2][1]){
+							if(GameBoard.board[0][1] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][1] !== '') {
+								winner=true;
+								console.log('winner in the col 2')
+							}
+						}
+					}
+				}
+
+				if(winner === false){
+					if(e.target.className === 'column3'){
+						if(GameBoard.board[1][2] === GameBoard.board[0][2] && GameBoard.board[1][2] === GameBoard.board[2][2]){
+							if(GameBoard.board[0][2] !== '' && GameBoard.board[1][2] !== '' && GameBoard.board[2][2] !== '') {
+								winner=true;
+								console.log('winner in the col 3')
+							}
+						}
+					}
+				}
+
 			})
 		})
 	}
