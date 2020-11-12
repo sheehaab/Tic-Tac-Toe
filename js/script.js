@@ -12,32 +12,36 @@ const GameBoard = (()=>{
 })();
 
 
-const Player = (name,score,choice,clicked)=>{
+const Player = (name,choice,clicked)=>{
 	//private
 
 	//public
+	let score = 0;
 	return {name,score,choice,clicked};
 }
 
 const displayGame = (() =>{
 	//private
 	let playerName = '';
-	let playerScore = 0;
-	let playerOne = Player('player1',playerScore,'x',true);
-	let playerTwo = Player('player2',playerScore,'o',false);
-	let zeroZero = document.getElementById('zero-zero');
-	let zeroOne = document.getElementById('zero-one');
-	let zeroTwo = document.getElementById('zero-two');
-	let oneZero = document.getElementById('one-zero');
-	let oneOne = document.getElementById('one-one');
-	let oneTwo = document.getElementById('one-two');
-	let twoZero = document.getElementById('two-zero');
-	let twoOne = document.getElementById('two-one');
-	let twoTwo = document.getElementById('two-two');
-	let resetButton = document.getElementById('reset');
+	let playerOne = Player('player1','x',true);
+	let playerTwo = Player('player2','o',false);
+	const playerOneName = document.getElementById('playerOneName');
+	const playerTwoName = document.getElementById('playerTwoName');
+	const playerOneScore = document.getElementById('playerOneScore');
+	const playerTwoScore = document.getElementById('playerTwoScore');
+	const zeroZero = document.getElementById('zero-zero');
+	const zeroOne = document.getElementById('zero-one');
+	const zeroTwo = document.getElementById('zero-two');
+	const oneZero = document.getElementById('one-zero');
+	const oneOne = document.getElementById('one-one');
+	const oneTwo = document.getElementById('one-two');
+	const twoZero = document.getElementById('two-zero');
+	const twoOne = document.getElementById('two-one');
+	const twoTwo = document.getElementById('two-two');
+	const resetButton = document.getElementById('reset');
 	const gameButtons = document.getElementById('ticBtns');
 	const allButtons = gameButtons.querySelectorAll('button');
-
+	const whoWins = document.getElementById('whoWins');
 
 	
 		
@@ -272,20 +276,6 @@ const displayGame = (() =>{
 		})
 	}
 
-	reset.addEventListener('click',function(){
-			for(let i=0;i<GameBoard.board.length;i++){
-				for(let j=0;j<GameBoard.board.length;j++){
-					GameBoard.board[i][j] = '';
-					allButtons.forEach((btn)=>{
-						btn.textContent = '';
-					})
-
-				}
-			}
-			winner = false;
-		})
-
-
 	let resetAll = ()=>{
 		for(let i=0;i<GameBoard.board.length;i++){
 			for(let j=0;j<GameBoard.board.length;j++){
@@ -295,7 +285,14 @@ const displayGame = (() =>{
 				})
 			}
 		}
+		winner = false;
+		whoWins.textContent = '';
 	}
+
+	reset.addEventListener('click',function(){
+			resetAll();
+	9})
+
 
 	let winner = false;
 
@@ -307,6 +304,16 @@ const displayGame = (() =>{
 				if(winner === false){
 					if(e.target.parentElement.id === 'zero'){
 						if(GameBoard.board[0][1] === GameBoard.board[0][0] && GameBoard.board[0][1] === GameBoard.board[0][2]){
+							if(GameBoard.board[0][1] === 'X'){
+								whoWins.textContent = 'Player one wins';
+								playerOne.score += 1;
+								playerOneScore.textContent = playerOne.score;
+							}else if(GameBoard.board[0][1] === 'O'){
+								whoWins.textContent = 'Player two wins';
+								playerTwo.score += 1;
+								playerTwoScore.textContent = playerTwo.score;
+								
+							}
 							console.log('winner in the zero')
 							winner = true;
 						}
@@ -316,6 +323,15 @@ const displayGame = (() =>{
 				if(winner === false){
 					if(e.target.parentElement.id === 'one'){
 						if(GameBoard.board[1][1] === GameBoard.board[1][0] && GameBoard.board[1][1] === GameBoard.board[1][2]){
+							if(GameBoard.board[1][1] === 'X'){
+								whoWins.textContent = 'Player one wins';
+								playerOne.score += 1;
+								playerOneScore.textContent = playerOne.score;
+							}else if(GameBoard.board[1][1] === 'O'){
+								whoWins.textContent = 'Player two wins';
+								playerTwo.score += 1;
+								playerTwoScore.textContent = playerTwo.score;
+							}
 							console.log('winner in the one')
 							winner = true;
 
@@ -326,6 +342,15 @@ const displayGame = (() =>{
 				if(winner === false){
 					if(e.target.parentElement.id === 'two'){
 						if(GameBoard.board[2][1] === GameBoard.board[2][0] && GameBoard.board[2][1] === GameBoard.board[2][2]){
+							if(GameBoard.board[2][1] === 'X'){
+								whoWins.textContent = 'Player one wins';
+								playerOne.score += 1;
+								playerOneScore.textContent = playerOne.score;
+							}else if(GameBoard.board[2][1] === 'O'){
+								whoWins.textContent = 'Player two wins';
+								playerTwo.score += 1;
+								playerTwoScore.textContent = playerTwo.score;
+							}
 							console.log('winner in the two')
 							winner = true;
 						}
@@ -338,6 +363,15 @@ const displayGame = (() =>{
 					if(e.target.className === 'column1'){
 						if(GameBoard.board[1][0] === GameBoard.board[0][0] && GameBoard.board[1][0] === GameBoard.board[2][0]){
 							if(GameBoard.board[0][0] !== '' && GameBoard.board[1][0] !== '' && GameBoard.board[2][0] !== '') {
+								if(GameBoard.board[1][0] === 'X'){
+									whoWins.textContent = 'Player one wins';
+									playerOne.score += 1;
+									playerOneScore.textContent = playerOne.score;
+								}else if(GameBoard.board[1][0] === 'O'){
+									whoWins.textContent = 'player two wins';
+									playerTwo.score += 1;
+									playerTwoScore.textContent = playerTwo.score;
+								}
 								winner=true;
 								console.log('winner in the col 1')
 							}
@@ -349,6 +383,15 @@ const displayGame = (() =>{
 					if(e.target.className === 'column2'){
 						if(GameBoard.board[1][1] === GameBoard.board[0][1] && GameBoard.board[1][1] === GameBoard.board[2][1]){
 							if(GameBoard.board[0][1] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][1] !== '') {
+								if(GameBoard.board[1][1] === 'X'){
+									whoWins.textContent = 'Player one wins';
+									playerOne.score += 1;
+									playerOneScore.textContent = playerOne.score;
+								}else if(GameBoard.board[1][1] === 'O'){
+									whoWins.textContent = 'Player two wins';
+									playerTwo.score += 1;
+									playerTwoScore.textContent = playerTwo.score;
+								}
 								winner=true;
 								console.log('winner in the col 2')
 							}
@@ -360,6 +403,16 @@ const displayGame = (() =>{
 					if(e.target.className === 'column3'){
 						if(GameBoard.board[1][2] === GameBoard.board[0][2] && GameBoard.board[1][2] === GameBoard.board[2][2]){
 							if(GameBoard.board[0][2] !== '' && GameBoard.board[1][2] !== '' && GameBoard.board[2][2] !== '') {
+								if(GameBoard.board[1][2] === 'X'){
+									whoWins.textContent = 'Player one wins';
+									playerOne.score += 1;
+									playerOneScore.textContent = playerOne.score;
+
+								}else if(GameBoard.board[1][2] === 'O'){
+									whoWins.textContent = 'Player two wins';
+									playerTwo.score += 1;
+									playerTwoScore.textContent = playerTwo.score;
+								}
 								winner=true;
 								console.log('winner in the col 3')
 							}
@@ -371,6 +424,15 @@ const displayGame = (() =>{
 				if(winner === false){
 					if(GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2])
 						if(GameBoard.board[1][1] !== '' && GameBoard.board[0][0] !== '' && GameBoard.board[2][2] !== ''){
+							if(GameBoard.board[1][1] === 'X'){
+								whoWins.textContent = 'Player one wins';
+								playerOne.score += 1;
+								playerOneScore.textContent = playerOne.score;
+							}else if(GameBoard.board[1][1] === 'O'){
+								whoWins.textContent = 'Player two wins';
+								playerTwo.score += 1;
+								playerTwoScore.textContent = playerTwo.score;
+							}
 							console.log('winner x');
 							winner = true;
 						}
@@ -379,6 +441,15 @@ const displayGame = (() =>{
 				if(winner === false){
 					if(GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0])
 						if(GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== ''){
+							if(GameBoard.board[1][1] === 'X'){
+								whoWins.textContent = 'Player one wins';
+								playerOne.score += 1;
+								playerOneScore.textContent = playerOne.score;
+							}else if(GameBoard.board[1][1] === 'O'){
+								whoWins.textContent = 'Player two wins';
+								playerTwo.score += 1;
+								playerTwoScore.textContent = playerTwo.score;
+							}
 							console.log('winner x2');
 							winner = true;
 						}
@@ -387,9 +458,6 @@ const displayGame = (() =>{
 			})
 		})
 	}
-
-		
-
 
 	return {gameLogic,gameOver};
 })();
