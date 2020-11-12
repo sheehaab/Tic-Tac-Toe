@@ -109,8 +109,8 @@ main .tic-container button{
 	border:none;
 	font-size:8em;
 	color:#fffd;
-	text-shadow: 0 0 10px #fffd, 0 0 20px #fffd, 0 0 30px #f6ee32, 0 0 40px #f6ee32, 0 0 50px #f6ee32, 0 0 60px #f6ee32, 0 0 70px #f6ee32
 }
+
 
 main .who-wins{
 	display: flex;
@@ -122,4 +122,13 @@ main .who-wins{
 main .who-wins span{
 	color:#FFF;
 	font-size:2em;
+}
+
+.o{
+	text-shadow: 0 0 10px #fffd, 0 0 20px #fffd, 0 0 30px #48ade4, 0 0 40px #48ade4, 0 0 50px #48ade4, 0 0 60px #48ade4, 0 0 70px #48ade4;
+}
+
+.x{
+	text-shadow: 0 0 10px #fffd, 0 0 20px #fffd, 0 0 30px #f24061, 0 0 40px #f24061, 0 0 50px #f24061, 0 0 60px #f24061, 0 0 70px #f24061;
+
 }
