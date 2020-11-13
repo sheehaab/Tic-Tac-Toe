@@ -23,10 +23,8 @@ const Player = (name,choice,clicked)=>{
 const displayGame = (() =>{
 	//private
 	let playerName = '';
-	let playerOneChoice = prompt('choose x || o ');
-	let playerTwoChoice = prompt('choose x || o ');
-	const playerOneName = document.getElementById('playerOneName');
-	const playerTwoName = document.getElementById('playerTwoName');
+	let playerOneName = document.getElementById('playerOneName');
+	let playerTwoName = document.getElementById('playerTwoName');
 	const playerOneScore = document.getElementById('playerOneScore');
 	const playerTwoScore = document.getElementById('playerTwoScore');
 	const zeroZero = document.getElementById('zero-zero');
@@ -38,21 +36,85 @@ const displayGame = (() =>{
 	const twoZero = document.getElementById('two-zero');
 	const twoOne = document.getElementById('two-one');
 	const twoTwo = document.getElementById('two-two');
+	const formButton = document.getElementById('start');
 	const resetButton = document.getElementById('reset');
 	const gameButtons = document.getElementById('ticBtns');
 	const allButtons = gameButtons.querySelectorAll('button');
 	const whoWins = document.getElementById('whoWins');
+	const form = document.getElementById('menu');
+	const playerOneInput = document.getElementById('playerInputNameOne');
+	const playerTwoInput = document.getElementById('playerInputNameTwo');
+	const startButton = document.getElementById('startBtn');;
+	const xPlayerOne = document.getElementById('xBtnPlayerOne');
+	const oPlayerOne = document.getElementById('oBtnPlayerOne');
+	const xPlayerTwo = document.getElementById('xBtnPlayerTwo');
+	const oPlayerTwo = document.getElementById('oBtnPlayerTwo');
+	let playerOneChoice = '';
+	let playerTwoChoice = '';
+	xPlayerOne.addEventListener('click',()=>{
+		playerOneChoice = 'X';
+		playerTwoChoice = 'O';
+		xPlayerOne.classList.add('buttonChoice');
+		oPlayerTwo.classList.add('buttonChoice');
+		oPlayerOne.classList.remove('buttonChoice');
+		xPlayerTwo.classList.remove('buttonChoice');
+	})
 
-	playerOneChoice = playerOneChoice.toUpperCase();
-	playerTwoChoice = playerTwoChoice.toUpperCase();
-	let playerOne = Player('player1',playerOneChoice,true);
-	let playerTwo = Player('player2',playerTwoChoice,false);
+	oPlayerOne.addEventListener('click',()=>{
+		playerOneChoice = 'O';
+		playerTwoChoice = 'X';
+		oPlayerOne.classList.add('buttonChoice');
+		xPlayerTwo.classList.add('buttonChoice');
+		xPlayerOne.classList.remove('buttonChoice');
+		oPlayerTwo.classList.remove('buttonChoice');
+	})
+
+	xPlayerTwo.addEventListener('click',()=>{
+		playerOneChoice = 'O';
+		playerTwoChoice = 'X';
+		xPlayerTwo.classList.add('buttonChoice');
+		oPlayerOne.classList.add('buttonChoice');
+		oPlayerTwo.classList.remove('buttonChoice');
+		xPlayerOne.classList.remove('buttonChoice');
+	})
+
+	oPlayerTwo.addEventListener('click',()=>{
+		playerOneChoice = 'X';
+		playerTwoChoice = 'O';
+		oPlayerTwo.classList.add('buttonChoice');
+		xPlayerOne.classList.add('buttonChoice');
+		xPlayerTwo.classList.remove('buttonChoice');
+		oPlayerOne.classList.remove('buttonChoice');
+	})
+
+
+
+
+	startButton.addEventListener('click',()=>{
+		if(playerOneInput.value === '' || playerTwoInput.value === ''){
+			return;
+		}else if(playerOneChoice === '' || playerTwoChoice === ''){
+			return;
+		}else{
+			playerOneName.textContent = playerOneInput.value.toUpperCase();
+			playerTwoName.textContent = playerTwoInput.value.toUpperCase();
+		}
+		playerOneInput.value = '';
+		playerTwoInput.value = '';
+
+
+		form.classList.add('menu-display-none');
+		form.classList.remove('menu-display');
+	})
+
+	let playerOne = Player(playerOneName,playerOneChoice,true);
+	let playerTwo = Player(playerTwoName,playerTwoChoice,false);
+	let winner = false;
 
 		
 
 	//public
 	
-		
 	
 
 	let gameLogic = ()=>{
@@ -468,12 +530,18 @@ const displayGame = (() =>{
 		whoWins.textContent = '';
 	}
 
-	reset.addEventListener('click',function(){
-			resetAll();
+
+
+	formButton.addEventListener('click',() =>{
+		form.classList.add('menu-display');
+		form.classList.remove('menu-display-none');
+	})
+	
+	resetButton.addEventListener('click',()=>{
+		resetAll();
 	})
 
 
-	let winner = false;
 
 	let gameOver = ()=>{
 		allButtons.forEach((btn)=>{
@@ -492,6 +560,7 @@ const displayGame = (() =>{
 								whoWins.textContent = 'Player two wins';
 								playerTwo.score += 1;
 								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+								
 							}
 							console.log('winner in the zero')
 							winner = true;
@@ -509,7 +578,8 @@ const displayGame = (() =>{
 							}else if(GameBoard.board[1][1] === playerTwoChoice){
 								whoWins.textContent = 'Player two wins';
 								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;							}
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}
 							console.log('winner in the one')
 							winner = true;
 
@@ -523,10 +593,12 @@ const displayGame = (() =>{
 							if(GameBoard.board[2][1] === playerOneChoice){
 								whoWins.textContent = 'Player one wins';
 								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;							}else if(GameBoard.board[2][1] === playerTwoChoice){
+								playerOneScore.textContent =`Score:${playerOne.score}`;
+							}else if(GameBoard.board[2][1] === playerTwoChoice){
 								whoWins.textContent = 'Player two wins';
 								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;							}
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}
 							console.log('winner in the two')
 							winner = true;
 						}
@@ -542,10 +614,12 @@ const displayGame = (() =>{
 								if(GameBoard.board[1][0] === playerOneChoice){
 									whoWins.textContent = 'Player one wins';
 									playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;								}else if(GameBoard.board[1][0] === playerTwoChoice){
+									playerOneScore.textContent =`Score:${playerOne.score}`;
+								}else if(GameBoard.board[1][0] === playerTwoChoice){
 									whoWins.textContent = 'player two wins';
 									playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;								}
+									playerTwoScore.textContent = `Score:${playerTwo.score}`;
+								}
 								winner=true;
 								console.log('winner in the col 1')
 							}
@@ -560,10 +634,12 @@ const displayGame = (() =>{
 								if(GameBoard.board[1][1] === playerOneChoice){
 									whoWins.textContent = 'Player one wins';
 									playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;								}else if(GameBoard.board[1][1] === playerTwoChoice){
+									playerOneScore.textContent =`Score:${playerOne.score}`;
+								}else if(GameBoard.board[1][1] === playerTwoChoice){
 									whoWins.textContent = 'Player two wins';
 									playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;								}
+									playerTwoScore.textContent = `Score:${playerTwo.score}`;
+								}
 								winner=true;
 								console.log('winner in the col 2')
 							}
@@ -578,11 +654,12 @@ const displayGame = (() =>{
 								if(GameBoard.board[1][2] === playerOneChoice){
 									whoWins.textContent = 'Player one wins';
 									playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
+									playerOneScore.textContent =`Score:${playerOne.score}`;
 								}else if(GameBoard.board[1][2] === playerTwoChoice){
 									whoWins.textContent = 'Player two wins';
 									playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;								}
+									playerTwoScore.textContent = `Score:${playerTwo.score}`;
+								}
 								winner=true;
 								console.log('winner in the col 3')
 							}
@@ -597,10 +674,12 @@ const displayGame = (() =>{
 							if(GameBoard.board[1][1] === playerOneChoice){
 								whoWins.textContent = 'Player one wins';
 								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;							}else if(GameBoard.board[1][1] === playerTwoChoice){
+								playerOneScore.textContent =`Score:${playerOne.score}`;
+							}else if(GameBoard.board[1][1] === playerTwoChoice){
 								whoWins.textContent = 'Player two wins';
 								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;							}
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}
 							console.log('winner x');
 							winner = true;
 						}
@@ -612,10 +691,12 @@ const displayGame = (() =>{
 							if(GameBoard.board[1][1] === playerOneChoice){
 								whoWins.textContent = 'Player one wins';
 								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;							}else if(GameBoard.board[1][1] === playerTwoChoice){
+								playerOneScore.textContent =`Score:${playerOne.score}`;
+							}else if(GameBoard.board[1][1] === playerTwoChoice){
 								whoWins.textContent = 'Player two wins';
 								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;							}
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}
 							console.log('winner x2');
 							winner = true;
 						}
@@ -626,11 +707,12 @@ const displayGame = (() =>{
 	}
 
 
-	return {gameLogic,gameOver};
+	return {gameLogic,gameOver,whoWinsAll};
 })();
 
 displayGame.gameLogic();
 displayGame.gameOver();
+displayGame.whoWinsAll();
 
 
 

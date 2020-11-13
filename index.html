@@ -21,7 +21,8 @@
 				</div>
 			</div>
 			<div class="start-container">
-				<button id='reset'>Start</button>
+				<button id='start'>Start</button>
+				<button type="" id='reset'>reset</button>
 			</div>
 			<div class="tic-container" id="ticBtns">
 				<div class="row1" id="zero">
@@ -48,7 +49,25 @@
 		</main>
 
 
-		<div id="menu">
+		<div class="menu" id="menu">
+			<div class="playerName">
+				<label><input type="input" name="playertwoName" placeholder="player1" id="playerInputNameOne"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerOne">X</button>
+					<button type="" id="oBtnPlayerOne">O</button>
+				</div>
+			</div>
+
+			<div class="playerName">
+				<label><input type="input" name="playeroneName" placeholder="player2" id="playerInputNameTwo"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerTwo">X</button>
+					<button type="" id="oBtnPlayerTwo">O</button>
+				</div>
+			</div>
+
+			<button type="" class="start" id="startBtn">Start!</button>
+
 			
 		</div>
 		<script type="text/javascript" src="js/script.js"></script>
