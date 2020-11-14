@@ -122,6 +122,7 @@ const displayGame = (() => {
         playerOneScore.textContent = `Score:${playerOne.score}`;
         playerTwoScore.textContent = `Score:${playerTwo.score}`;
         resetAll();
+        click = false;
 
         //hide the menu
         form.classList.add('menu-display-none');
@@ -144,7 +145,6 @@ const displayGame = (() => {
                 }else {
                     whoWins.textContent = `The winner is ${playerTwoName.textContent} 
                     Press the restart game to play again`;
-
                 }
                  click = true;
                  winner = true;
