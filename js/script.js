@@ -59,6 +59,11 @@ const displayGame = (() => {
     const oPlayerTwo = document.getElementById('oBtnPlayerTwo');
     let playerOneChoice = '';
     let playerTwoChoice = '';
+    //create two player objects
+    let playerOne = Player(playerOneName, playerOneChoice, true);
+    let playerTwo = Player(playerTwoName, playerTwoChoice, false);
+    let winner = false;
+
     //the player choice in the form
     xPlayerOne.addEventListener('click', () => {
         playerOneChoice = 'X';
@@ -97,6 +102,7 @@ const displayGame = (() => {
     })
 
 
+
     //adding info for the players
     startButton.addEventListener('click', () => {
         //error logic
@@ -115,8 +121,7 @@ const displayGame = (() => {
         playerTwo.score = 0;
         playerOneScore.textContent = `Score:${playerOne.score}`;
         playerTwoScore.textContent = `Score:${playerTwo.score}`;
-
-
+        resetAll();
 
         //hide the menu
         form.classList.add('menu-display-none');
@@ -127,9 +132,26 @@ const displayGame = (() => {
         form.classList.add('menu-display');
     })
 
-    let playerOne = Player(playerOneName, playerOneChoice, true);
-    let playerTwo = Player(playerTwoName, playerTwoChoice, false);
-    let winner = false;
+    // to know wether the window is clicked once or not
+    let click = false;
+    //to know wether the button is clicked after one of the player is win over three rounds
+    window.addEventListener('click', () => {
+        if (!click) {
+            if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                if (playerOne.score > playerTwo.score) {
+                    whoWins.textContent = `The winner is ${playerOneName.textContent} 
+                    Press the restart game to play again`;
+                }else {
+                    whoWins.textContent = `The winner is ${playerTwoName.textContent} 
+                    Press the restart game to play again`;
+
+                }
+                 click = true;
+                 winner = true;
+
+            }
+        }
+    })
 
 
 
@@ -146,6 +168,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[0][0] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[0][0] = playerOneChoice;
                             zeroZero.textContent = GameBoard.board[0][0];
@@ -191,11 +214,11 @@ const displayGame = (() => {
 
         zeroOne.addEventListener('click', function(e) {
             if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
                 return;
             } else {
                 if (!winner) {
                     if (GameBoard.board[0][1] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[0][1] = playerOneChoice;
                             zeroOne.textContent = GameBoard.board[0][1];
@@ -243,6 +266,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[0][2] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[0][2] = playerOneChoice;
                             zeroTwo.textContent = GameBoard.board[0][2];
@@ -293,6 +317,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[1][0] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[1][0] = playerOneChoice;
                             oneZero.textContent = GameBoard.board[1][0];
@@ -340,12 +365,12 @@ const displayGame = (() => {
 
         oneOne.addEventListener('click', function(e) {
             if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
                 return;
             } else {
 
                 if (!winner) {
                     if (GameBoard.board[1][1] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[1][1] = playerOneChoice;
                             oneOne.textContent = GameBoard.board[1][1];
@@ -396,6 +421,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[1][2] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[1][2] = playerOneChoice;
                             oneTwo.textContent = GameBoard.board[1][2];
@@ -446,6 +472,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[2][0] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[2][0] = playerOneChoice;
                             twoZero.textContent = GameBoard.board[2][0];
@@ -497,6 +524,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[2][1] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[2][1] = playerOneChoice;
                             twoOne.textContent = GameBoard.board[2][1];
@@ -549,6 +577,7 @@ const displayGame = (() => {
             } else {
                 if (!winner) {
                     if (GameBoard.board[2][2] === '') {
+                        tieCounter += 1;
                         if (playerOne.clicked === true) {
                             GameBoard.board[2][2] = playerOneChoice;
                             twoTwo.textContent = GameBoard.board[2][2];
@@ -617,127 +646,123 @@ const displayGame = (() => {
     })
 
     resetButton.addEventListener('click', () => {
-        resetAll();
+        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+            return;
+        } else {
+            resetAll();
+
+        }
     })
 
 
 
     let gameOver = () => {
+            //loop in every button in the DOM
+            allButtons.forEach((btn) => {
+                    //add click event to every button
+                    btn.addEventListener('click', function(e) {
 
-        allButtons.forEach((btn) => {
+                            if (playerOne.score <= 3 || playerTwo.score <= 3) {
+                                if (winner === false) {
 
-            btn.addEventListener('click', function(e) {
+                                    outer: for (let i = 0; i < GameBoard.board.length; i++) {
 
-                if (playerOne.score <= 3 || playerTwo.score <= 3) {
-                    if (winner === false) {
-                        tieCounter += 1;
-                        outer: for (let i = 0; i < GameBoard.board.length; i++) {
+                                            for (let j = 0; j < GameBoard.board.length; j++) {
 
-                            for (let j = 0; j < GameBoard.board.length; j++) {
+                                                //row win
+                                                if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j] === GameBoard.board[i][j - 1]) {
+                                                    if (GameBoard.board[i][j] !== '') {
+                                                        if (GameBoard.board[i][j] === playerOneChoice) {
+                                                            whoWins.textContent = `${playerOneName.textContent} wins`;
+                                                            playerOne.score += 1;
+                                                            playerOneScore.textContent = `Score:${playerOne.score}`;
 
-                                //row win
-                                if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j] === GameBoard.board[i][j - 1]) {
-                                    if (GameBoard.board[i][j] !== '') {
-                                        if (GameBoard.board[i][j] === playerOneChoice) {
-                                            whoWins.textContent = `${playerOneName.textContent} wins`;
-                                            playerOne.score += 1;
-                                            playerOneScore.textContent = `Score:${playerOne.score}`;
+                                                        } else if (GameBoard.board[i][j] === playerTwoChoice) {
+                                                            whoWins.textContent = `${playerTwoName.textContent} wins`;
+                                                            playerTwo.score += 1;
+                                                            playerTwoScore.textContent = `Score:${playerTwo.score}`;
 
-                                        } else if (GameBoard.board[i][j] === playerTwoChoice) {
-                                            whoWins.textContent = `${playerTwoName.textContent} wins`;
-                                            playerTwo.score += 1;
-                                            playerTwoScore.textContent = `Score:${playerTwo.score}`;
+                                                        }
+                                                        winner = true;
+                                                    }
+                                                }
 
+
+                                                //column win
+                                                if (GameBoard.board[1][j] === GameBoard.board[0][j] && GameBoard.board[1][j] === GameBoard.board[2][j]) {
+                                                    if (GameBoard.board[1][j] !== '') {
+                                                        if (GameBoard.board[1][j] === playerOneChoice) {
+                                                            whoWins.textContent = `${playerOneName.textContent} wins`;
+                                                            playerOne.score += 1;
+                                                            playerOneScore.textContent = `Score:${playerOne.score}`;
+                                                            break outer;
+                                                        } else if (GameBoard.board[1][j] === playerTwoChoice) {
+                                                            whoWins.textContent = `${playerTwoName.textContent} wins`;
+                                                            playerTwo.score += 1;
+                                                            playerTwoScore.textContent = `Score:${playerTwo.score}`;
+                                                            break outer;
+                                                        }
+                                                        winner = true;
+                                                    }
+                                                }
+
+
+                                            } //inner for loop
+
+                                        } //outer for loop
+
+                                    //x wins
+                                        if (GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2]) {
+                                            if (GameBoard.board[0][0] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][2] !== '') {
+                                                if (GameBoard.board[1][1] === playerOneChoice) {
+                                                    whoWins.textContent = `${playerOneName.textContent} wins`;
+                                                    playerOne.score += 1;
+                                                    playerOneScore.textContent = `Score:${playerOne.score}`;
+                                                } else if (GameBoard.board[1][1] === playerTwoChoice) {
+                                                    whoWins.textContent = `${playerTwoName.textContent} wins`;
+                                                    playerTwo.score += 1;
+                                                    playerTwoScore.textContent = `Score:${playerTwo.score}`;
+                                                }
+                                                winner = true;
+                                            }
                                         }
-                                        winner = true;
-                                    }
-                                }
 
-
-                                //column win
-                                if (GameBoard.board[1][j] === GameBoard.board[0][j] && GameBoard.board[1][j] === GameBoard.board[2][j]) {
-                                    if (GameBoard.board[1][j] !== '') {
-                                        if (GameBoard.board[1][j] === playerOneChoice) {
-                                            whoWins.textContent = `${playerOneName.textContent} wins`;
-                                            playerOne.score += 1;
-                                            playerOneScore.textContent = `Score:${playerOne.score}`;
-                                            break outer;
-                                        } else if (GameBoard.board[1][j] === playerTwoChoice) {
-                                            whoWins.textContent = `${playerTwoName.textContent} wins`;
-                                            playerTwo.score += 1;
-                                            playerTwoScore.textContent = `Score:${playerTwo.score}`;
-                                            break outer;
+                                        //reverse x wins
+                                    if (GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
+                                        if (GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== '') {
+                                            if (GameBoard.board[1][1] === playerOneChoice) {
+                                                whoWins.textContent = `${playerOneName.textContent} wins`;
+                                                playerOne.score += 1;
+                                                playerOneScore.textContent = `Score:${playerOne.score}`;
+                                            } else if (GameBoard.board[1][1] === playerTwoChoice) {
+                                                whoWins.textContent = `${playerTwoName.textContent} wins`;
+                                                playerTwo.score += 1;
+                                                playerTwoScore.textContent = `Score:${playerTwo.score}`;
+                                            }
+                                            winner = true;
                                         }
-                                        winner = true;
                                     }
-                                }
+
+                                    //tie
+                                    if (tieCounter >= 9) {
+                                        if (!winner) {
+                                            whoWins.textContent = `Tie`;
+                                            winner = true;
+                                        }
+                                    }
 
 
-                            } //inner for loop
-
-                        } //outer for loop
-
-                        //x wins
-                        if (GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2]) {
-                            if (GameBoard.board[0][0] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][2] !== '') {
-                                if (GameBoard.board[1][1] === playerOneChoice) {
-                                    whoWins.textContent = `${playerOneName.textContent} wins`;
-                                    playerOne.score += 1;
-                                    playerOneScore.textContent = `Score:${playerOne.score}`;
-                                } else if (GameBoard.board[1][1] === playerTwoChoice) {
-                                    whoWins.textContent = `${playerTwoName.textContent} wins`;
-                                    playerTwo.score += 1;
-                                    playerTwoScore.textContent = `Score:${playerTwo.score}`;
-                                }
-                                winner = true;
+                                } //if winner false
                             }
-                        }
+                        }) //end event lisener
+                }) //end for each
+        } //end function
 
-                        //reverse x wins
-                        if (GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
-                            if (GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== '') {
-                                if (GameBoard.board[1][1] === playerOneChoice) {
-                                    whoWins.textContent = `${playerOneName.textContent} wins`;
-                                    playerOne.score += 1;
-                                    playerOneScore.textContent = `Score:${playerOne.score}`;
-                                } else if (GameBoard.board[1][1] === playerTwoChoice) {
-                                    whoWins.textContent = `${playerTwoName.textContent} wins`;
-                                    playerTwo.score += 1;
-                                    playerTwoScore.textContent = `Score:${playerTwo.score}`;
-                                }
-                                winner = true;
-                            }
-                        }
-
-                        //tie
-                        if (tieCounter >= 9) {
-                            if (!winner) {
-                                whoWins.textContent = `Tie`;
-                                winner = true;
-                            }
-                        }
-
-
-                    } //if winner false
-                }
-            }) //end event lisener
-        }) //end for each
-    } //end function
-
-    let theWinner = ()=>{
-        if(playerOne.score > playerOne.score){
-            console.log('winner is player one');
-        }else{
-            console.log('winenr is player two')
-        }
-    }
     return {
         gameLogic,
-        gameOver,
-        theWinner
+        gameOver
     };
 })();
 
 displayGame.gameLogic();
 displayGame.gameOver();
-displayGame.theWinner();
