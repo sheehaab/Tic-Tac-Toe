@@ -23,6 +23,7 @@ const Player = (name,choice,clicked)=>{
 const displayGame = (() =>{
 	//private
 	let playerName = '';
+	let tieCounter = 0;
 	let playerOneName = document.getElementById('playerOneName');
 	let playerTwoName = document.getElementById('playerTwoName');
 	const playerOneScore = document.getElementById('playerOneScore');
@@ -89,8 +90,9 @@ const displayGame = (() =>{
 
 
 
-
+	//adding info for the players
 	startButton.addEventListener('click',()=>{
+		//error logic
 		if(playerOneInput.value === '' || playerTwoInput.value === ''){
 			return;
 		}else if(playerOneChoice === '' || playerTwoChoice === ''){
@@ -99,12 +101,17 @@ const displayGame = (() =>{
 			playerOneName.textContent = playerOneInput.value.toUpperCase();
 			playerTwoName.textContent = playerTwoInput.value.toUpperCase();
 		}
+
 		playerOneInput.value = '';
 		playerTwoInput.value = '';
 
-
+		//hide the menu
 		form.classList.add('menu-display-none');
 		form.classList.remove('menu-display');
+	})
+
+	window.addEventListener('DOMContentLoaded',()=>{
+		form.classList.add('menu-display');
 	})
 
 	let playerOne = Player(playerOneName,playerOneChoice,true);
@@ -527,6 +534,7 @@ const displayGame = (() =>{
 			}
 		}
 		winner = false;
+		tieCounter = 0;
 		whoWins.textContent = '';
 	}
 
@@ -545,68 +553,101 @@ const displayGame = (() =>{
 
 	let gameOver = ()=>{
 
-		let tieCounter = 0;
 		allButtons.forEach((btn)=>{
 			
 			btn.addEventListener('click',function(e){
 				if(winner === false){
 					tieCounter+=1;
-					console.log(tieCounter);
-					//row win
-					for(let i=0;i<GameBoard.board.length;i++){
+					shehab:for(let i=0;i<GameBoard.board.length;i++){
+
 						for(let j=0;j<GameBoard.board.length;j++){
+							
+							//row win
 							if(GameBoard.board[i][j] === GameBoard.board[i][j+1] && GameBoard.board[i][j] === GameBoard.board[i][j-1]){
 								if(GameBoard.board[i][j] !== ''){
 									if(GameBoard.board[i][j] === playerOneChoice){
-										console.log('player one win');
+										whoWins.textContent = `${playerOneName.textContent} wins`;
+										playerOne.score += 1;
+										playerOneScore.textContent = `Score:${playerOne.score}`;
+
 									}else if(GameBoard.board[i][j] === playerTwoChoice){
-										console.log('player two win');
+										whoWins.textContent = `${playerTwoName.textContent} wins`;
+										playerTwo.score += 1;
+										playerTwoScore.textContent = `Score:${playerTwo.score}`;
+
 									}
 									winner = true;
 								}
 							}
+
+
 							//column win
 							if(GameBoard.board[1][j] === GameBoard.board[0][j] && GameBoard.board[1][j] === GameBoard.board[2][j]){
 								if(GameBoard.board[1][j] !== ''){
 									if(GameBoard.board[1][j] === playerOneChoice){
-										console.log('player one win');
+										whoWins.textContent = `${playerOneName.textContent} wins`;
+										playerOne.score += 1;
+										playerOneScore.textContent = `Score:${playerOne.score}`;
+										break shehab;
 									}else if(GameBoard.board[1][j] === playerTwoChoice){
-										console.log('player two win');
+										whoWins.textContent = `${playerTwoName.textContent} wins`;
+										playerTwo.score += 1;
+										playerTwoScore.textContent = `Score:${playerTwo.score}`;
+										break shehab;
 									}
 									winner = true;
 								}
 							}
 
-							
-							
-						}
-					}
+
+						}//inner for loop
+
+					}//outer for loop
 
 					//x wins
 					if(GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2]){
 						if(GameBoard.board[0][0] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][2] !== '' ){
-							console.log('x wins 1');
+							if(GameBoard.board[1][1] === playerOneChoice){
+								whoWins.textContent = `${playerOneName.textContent} wins`;
+								playerOne.score += 1;
+								playerOneScore.textContent = `Score:${playerOne.score}`;
+							}else if(GameBoard.board[1][1] === playerTwoChoice){
+								whoWins.textContent = `${playerTwoName.textContent} wins`;
+								playerTwo.score += 1;
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}							
 							winner = true;
 						}
 					}
 
 					if(GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0]){
 						if(GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== '' ){
-							console.log('x wins 2');
+							if(GameBoard.board[1][1] === playerOneChoice){
+								whoWins.textContent = `${playerOneName.textContent} wins`;
+								playerOne.score += 1;
+								playerOneScore.textContent = `Score:${playerOne.score}`;
+							}else if(GameBoard.board[1][1] === playerTwoChoice){
+								whoWins.textContent = `${playerTwoName.textContent} wins`;
+								playerTwo.score += 1;
+								playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							}							
 							winner = true;
 						}
 					}
 
+					//tie
 					if(tieCounter >= 9){
 						if(!winner){
-							console.log('tie');
+							whoWins.textContent = `Tie`;
 						}
 					}
-				}
+
+
+				}//if winner false
 					
-			})
-		})
-	}
+			})//end event lisener
+		})//end for each
+	}//end function
 
 
 	return {gameLogic,gameOver};
@@ -615,7 +656,6 @@ const displayGame = (() =>{
 displayGame.gameLogic();
 displayGame.gameOver();
 
-//try in this brach to change the win logic and add the tie to it 
 
 
 
