@@ -544,175 +544,78 @@ const displayGame = (() =>{
 
 
 	let gameOver = ()=>{
+
+		let tieCounter = 0;
 		allButtons.forEach((btn)=>{
 			
 			btn.addEventListener('click',function(e){
-				
-				//logic for row wins
 				if(winner === false){
-					if(e.target.parentElement.id === 'zero'){
-						if(GameBoard.board[0][1] === GameBoard.board[0][0] && GameBoard.board[0][1] === GameBoard.board[0][2]){
-							if(GameBoard.board[0][1] === playerOneChoice){
-								whoWins.textContent = 'Player one wins';
-								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
-							}else if(GameBoard.board[0][1] === playerTwoChoice){
-								whoWins.textContent = 'Player two wins';
-								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;
-								
-							}
-							console.log('winner in the zero')
-							winner = true;
-						}
-					}
-				}
-
-				if(winner === false){
-					if(e.target.parentElement.id === 'one'){
-						if(GameBoard.board[1][1] === GameBoard.board[1][0] && GameBoard.board[1][1] === GameBoard.board[1][2]){
-							if(GameBoard.board[1][1] === playerOneChoice){
-								whoWins.textContent = 'Player one wins';
-								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
-							}else if(GameBoard.board[1][1] === playerTwoChoice){
-								whoWins.textContent = 'Player two wins';
-								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;
-							}
-							console.log('winner in the one')
-							winner = true;
-
-						}
-					}
-				}
-
-				if(winner === false){
-					if(e.target.parentElement.id === 'two'){
-						if(GameBoard.board[2][1] === GameBoard.board[2][0] && GameBoard.board[2][1] === GameBoard.board[2][2]){
-							if(GameBoard.board[2][1] === playerOneChoice){
-								whoWins.textContent = 'Player one wins';
-								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
-							}else if(GameBoard.board[2][1] === playerTwoChoice){
-								whoWins.textContent = 'Player two wins';
-								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;
-							}
-							console.log('winner in the two')
-							winner = true;
-						}
-					}
-				}
-
-				//column logic
-
-				if(winner === false){
-					if(e.target.classList[0] === 'column1'){
-						if(GameBoard.board[1][0] === GameBoard.board[0][0] && GameBoard.board[1][0] === GameBoard.board[2][0]){
-							if(GameBoard.board[0][0] !== '' && GameBoard.board[1][0] !== '' && GameBoard.board[2][0] !== '') {
-								if(GameBoard.board[1][0] === playerOneChoice){
-									whoWins.textContent = 'Player one wins';
-									playerOne.score += 1;
-									playerOneScore.textContent =`Score:${playerOne.score}`;
-								}else if(GameBoard.board[1][0] === playerTwoChoice){
-									whoWins.textContent = 'player two wins';
-									playerTwo.score += 1;
-									playerTwoScore.textContent = `Score:${playerTwo.score}`;
+					tieCounter+=1;
+					console.log(tieCounter);
+					//row win
+					for(let i=0;i<GameBoard.board.length;i++){
+						for(let j=0;j<GameBoard.board.length;j++){
+							if(GameBoard.board[i][j] === GameBoard.board[i][j+1] && GameBoard.board[i][j] === GameBoard.board[i][j-1]){
+								if(GameBoard.board[i][j] !== ''){
+									if(GameBoard.board[i][j] === playerOneChoice){
+										console.log('player one win');
+									}else if(GameBoard.board[i][j] === playerTwoChoice){
+										console.log('player two win');
+									}
+									winner = true;
 								}
-								winner=true;
-								console.log('winner in the col 1')
 							}
-						}
-					}
-				}
-
-				if(winner === false){
-					if(e.target.classList[0] === 'column2'){
-						if(GameBoard.board[1][1] === GameBoard.board[0][1] && GameBoard.board[1][1] === GameBoard.board[2][1]){
-							if(GameBoard.board[0][1] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][1] !== '') {
-								if(GameBoard.board[1][1] === playerOneChoice){
-									whoWins.textContent = 'Player one wins';
-									playerOne.score += 1;
-									playerOneScore.textContent =`Score:${playerOne.score}`;
-								}else if(GameBoard.board[1][1] === playerTwoChoice){
-									whoWins.textContent = 'Player two wins';
-									playerTwo.score += 1;
-									playerTwoScore.textContent = `Score:${playerTwo.score}`;
+							//column win
+							if(GameBoard.board[1][j] === GameBoard.board[0][j] && GameBoard.board[1][j] === GameBoard.board[2][j]){
+								if(GameBoard.board[1][j] !== ''){
+									if(GameBoard.board[1][j] === playerOneChoice){
+										console.log('player one win');
+									}else if(GameBoard.board[1][j] === playerTwoChoice){
+										console.log('player two win');
+									}
+									winner = true;
 								}
-								winner=true;
-								console.log('winner in the col 2')
 							}
+
+							
+							
 						}
 					}
-				}
 
-				if(winner === false){
-					if(e.target.classList[0] === 'column3'){
-						if(GameBoard.board[1][2] === GameBoard.board[0][2] && GameBoard.board[1][2] === GameBoard.board[2][2]){
-							if(GameBoard.board[0][2] !== '' && GameBoard.board[1][2] !== '' && GameBoard.board[2][2] !== '') {
-								if(GameBoard.board[1][2] === playerOneChoice){
-									whoWins.textContent = 'Player one wins';
-									playerOne.score += 1;
-									playerOneScore.textContent =`Score:${playerOne.score}`;
-								}else if(GameBoard.board[1][2] === playerTwoChoice){
-									whoWins.textContent = 'Player two wins';
-									playerTwo.score += 1;
-									playerTwoScore.textContent = `Score:${playerTwo.score}`;
-								}
-								winner=true;
-								console.log('winner in the col 3')
-							}
-						}
-					}
-				}
-
-				//x logic
-				if(winner === false){
-					if(GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2])
-						if(GameBoard.board[1][1] !== '' && GameBoard.board[0][0] !== '' && GameBoard.board[2][2] !== ''){
-							if(GameBoard.board[1][1] === playerOneChoice){
-								whoWins.textContent = 'Player one wins';
-								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
-							}else if(GameBoard.board[1][1] === playerTwoChoice){
-								whoWins.textContent = 'Player two wins';
-								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;
-							}
-							console.log('winner x');
+					//x wins
+					if(GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2]){
+						if(GameBoard.board[0][0] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][2] !== '' ){
+							console.log('x wins 1');
 							winner = true;
 						}
-				}
+					}
 
-				if(winner === false){
-					if(GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0])
-						if(GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== ''){
-							if(GameBoard.board[1][1] === playerOneChoice){
-								whoWins.textContent = 'Player one wins';
-								playerOne.score += 1;
-								playerOneScore.textContent =`Score:${playerOne.score}`;
-							}else if(GameBoard.board[1][1] === playerTwoChoice){
-								whoWins.textContent = 'Player two wins';
-								playerTwo.score += 1;
-								playerTwoScore.textContent = `Score:${playerTwo.score}`;
-							}
-							console.log('winner x2');
+					if(GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0]){
+						if(GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== '' ){
+							console.log('x wins 2');
 							winner = true;
 						}
-				}
+					}
 
+					if(tieCounter >= 9){
+						if(!winner){
+							console.log('tie');
+						}
+					}
+				}
+					
 			})
 		})
 	}
 
 
-	return {gameLogic,gameOver,whoWinsAll};
+	return {gameLogic,gameOver};
 })();
 
 displayGame.gameLogic();
 displayGame.gameOver();
-displayGame.whoWinsAll();
+
+//try in this brach to change the win logic and add the tie to it 
 
 
 
