@@ -104,6 +104,12 @@ const displayGame = (() =>{
 
 		playerOneInput.value = '';
 		playerTwoInput.value = '';
+		playerOne.score = 0;
+		playerTwo.score = 0;
+		playerOneScore.textContent = `Score:${playerOne.score}`;
+		playerTwoScore.textContent = `Score:${playerTwo.score}`;
+
+
 
 		//hide the menu
 		form.classList.add('menu-display-none');
@@ -639,6 +645,7 @@ const displayGame = (() =>{
 					if(tieCounter >= 9){
 						if(!winner){
 							whoWins.textContent = `Tie`;
+							winner=true;
 						}
 					}
 
