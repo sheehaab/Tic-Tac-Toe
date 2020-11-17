@@ -115,8 +115,7 @@ const displayGame = (() => {
             playerTwoName.textContent = playerTwoInput.value.toUpperCase();
         }
 
-        playerOneInput.value = '';
-        playerTwoInput.value = '';
+
         playerOne.score = 0;
         playerTwo.score = 0;
         playerOneScore.textContent = `Score:${playerOne.score}`;
@@ -142,12 +141,12 @@ const displayGame = (() => {
                 if (playerOne.score > playerTwo.score) {
                     whoWins.textContent = `The winner is ${playerOneName.textContent} 
                     Press the restart game to play again`;
-                }else {
+                } else {
                     whoWins.textContent = `The winner is ${playerTwoName.textContent} 
                     Press the restart game to play again`;
                 }
-                 click = true;
-                 winner = true;
+                click = true;
+                winner = true;
 
             }
         }
@@ -624,21 +623,6 @@ const displayGame = (() => {
         })
     }
 
-    let resetAll = () => {
-        for (let i = 0; i < GameBoard.board.length; i++) {
-            for (let j = 0; j < GameBoard.board.length; j++) {
-                GameBoard.board[i][j] = '';
-                allButtons.forEach((btn) => {
-                    btn.textContent = '';
-                })
-            }
-        }
-        winner = false;
-        tieCounter = 0;
-        whoWins.textContent = '';
-    }
-
-
 
     formButton.addEventListener('click', () => {
         form.classList.add('menu-display');
@@ -752,11 +736,31 @@ const displayGame = (() => {
                                     }
 
 
-                                } //if winner false
+                                } //end if winner false
                             }
                         }) //end event lisener
                 }) //end for each
         } //end function
+
+    //function to reset the game
+    let resetAll = () => {
+        for (let i = 0; i < GameBoard.board.length; i++) {
+            for (let j = 0; j < GameBoard.board.length; j++) {
+                GameBoard.board[i][j] = '';
+                allButtons.forEach((btn) => {
+                    btn.textContent = '';
+                })
+            }
+        }
+        winner = false;
+        tieCounter = 0;
+        whoWins.textContent = '';
+    }
+
+    //generate random number from 0 to the max number
+    let generateRandom = (max)=>{
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 
     return {
         gameLogic,
