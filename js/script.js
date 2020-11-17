@@ -27,6 +27,18 @@ const Player = (name, choice, clicked) => {
     };
 }
 
+const computer = ((choice, clicked) => {
+    //private
+
+    //public
+    let score = 0;
+    return {
+        choice,
+        clicked,
+        score
+    }
+})();
+
 const displayGame = (() => {
     //private
     let playerName = '';
@@ -135,9 +147,9 @@ const displayGame = (() => {
         form.classList.add('menu-display-none');
         form.classList.remove('menu-display');
     })
-    
+
     //when click on the player button click event fires
-    playerBtnChoice.addEventListener('click',()=>{
+    playerBtnChoice.addEventListener('click', () => {
         //hide the whole screen
         againstWho.classList.remove('vs-who-display');
         againstWho.classList.add('vs-who-display-none');
@@ -149,7 +161,7 @@ const displayGame = (() => {
     })
 
     //when click on the pc button click event fires
-    pcBtnChoice.addEventListener('click',()=>{
+    pcBtnChoice.addEventListener('click', () => {
         //hide the whole screen
         againstWho.classList.remove('vs-who-display');
         againstWho.classList.add('vs-who-display-none');
@@ -159,7 +171,7 @@ const displayGame = (() => {
         pcMenu.classList.add('menu-display');
         pcMenu.classList.remove('menu-display-none');
     })
-    
+
 
     // to know wether the window is clicked once or not
     let click = false;
@@ -787,7 +799,7 @@ const displayGame = (() => {
     }
 
     //generate random number from 0 to the max number
-    let generateRandom = (max)=>{
+    let generateRandom = (max) => {
         return Math.floor(Math.random() * Math.floor(max));
     }
 
