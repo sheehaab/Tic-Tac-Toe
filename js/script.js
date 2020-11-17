@@ -57,6 +57,14 @@ const displayGame = (() => {
     const oPlayerOne = document.getElementById('oBtnPlayerOne');
     const xPlayerTwo = document.getElementById('xBtnPlayerTwo');
     const oPlayerTwo = document.getElementById('oBtnPlayerTwo');
+    const playerBtnChoice = document.getElementById('player-choice');
+    const pcBtnChoice = document.getElementById('pc-choice');
+    const againstWho = document.getElementById('against-who');
+    const pcMenu = document.getElementById('pcMenu');
+    const playerInputVsPc = document.getElementById('playerInputNameVsPc');
+    const xBtnPlayerOneVsPc = document.getElementById('xBtnPlayerOneVsPc');
+    const oBtnPlayerOneVsPc = document.getElementById('oBtnPlayerOneVsPc');
+    const startBtnVsPc = document.getElementById('startBtnVsPc');
     let playerOneChoice = '';
     let playerTwoChoice = '';
     //create two player objects
@@ -127,10 +135,31 @@ const displayGame = (() => {
         form.classList.add('menu-display-none');
         form.classList.remove('menu-display');
     })
-
-    window.addEventListener('DOMContentLoaded', () => {
+    
+    //when click on the player button click event fires
+    playerBtnChoice.addEventListener('click',()=>{
+        //hide the whole screen
+        againstWho.classList.remove('vs-who-display');
+        againstWho.classList.add('vs-who-display-none');
+        //show the player menu to put name and the choice of x,o
         form.classList.add('menu-display');
+        form.classList.remove('menu-display-none');
+
+
     })
+
+    //when click on the pc button click event fires
+    pcBtnChoice.addEventListener('click',()=>{
+        //hide the whole screen
+        againstWho.classList.remove('vs-who-display');
+        againstWho.classList.add('vs-who-display-none');
+
+        //show the pc menu
+
+        pcMenu.classList.add('menu-display');
+        pcMenu.classList.remove('menu-display-none');
+    })
+    
 
     // to know wether the window is clicked once or not
     let click = false;

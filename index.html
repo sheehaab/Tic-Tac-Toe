@@ -49,6 +49,9 @@
 		</main>
 
 
+
+
+		<!-- menu to choose the name and the players choice from x and o-->s
 		<div class="menu menu-display-none" id="menu">
 			<div class="playerName">
 				<label><input type="input" name="playertwoName" placeholder="player1" id="playerInputNameOne"></label>
@@ -67,9 +70,30 @@
 			</div>
 
 			<button type="" class="start" id="startBtn">Start!</button>
-
-			
 		</div>
+
+		<!-- vs pc menu -->
+		<div class="pc-menu menu-display-none" id="pcMenu">
+			<div class="playerName">
+				<label><input type="input" name="playertwoName" placeholder="player1" id="playerInputNameVsPc"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerVsPc">X</button>
+					<button type="" id="oBtnPlayerVsPc">O</button>
+				</div>
+			</div>
+
+			<button type="" class="start" id="startBtnVsPc">Start!</button>
+		</div>
+
+		<!-- first menu to choose play with player or pc-->
+		<div class="vs-who" id="against-who">
+			<h2>You wanna play against</h2>
+			<div class="choice">
+				<button class="player" id="player-choice">player</button>
+				<button class="pc" id="pc-choice">pc</button>
+			</div>
+		</div>
+
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>
