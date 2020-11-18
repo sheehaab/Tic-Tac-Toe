@@ -236,6 +236,7 @@ main .who-wins span{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	transition: all .5s ease-in-out;
 }
 
 .vs-who h2{
@@ -270,9 +271,10 @@ main .who-wins span{
 }
 
 .vs-who-display{
-	display: flex;
+	transform: translateY(0);
 }
 
 .vs-who-display-none{
-	display: none;
+	transform: translateY(-1000px);
+
 }

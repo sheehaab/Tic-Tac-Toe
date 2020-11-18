@@ -27,17 +27,18 @@ const Player = (name, choice, clicked) => {
     };
 }
 
-const computer = ((choice, clicked) => {
+const computer = (choice, clicked) => {
     //private
 
     //public
     let score = 0;
+
     return {
         choice,
         clicked,
         score
     }
-})();
+};
 
 const displayGame = (() => {
     //private
@@ -47,6 +48,7 @@ const displayGame = (() => {
     let playerTwoName = document.getElementById('playerTwoName');
     const playerOneScore = document.getElementById('playerOneScore');
     const playerTwoScore = document.getElementById('playerTwoScore');
+    //button of the grid
     const zeroZero = document.getElementById('zero-zero');
     const zeroOne = document.getElementById('zero-one');
     const zeroTwo = document.getElementById('zero-two');
@@ -56,10 +58,12 @@ const displayGame = (() => {
     const twoZero = document.getElementById('two-zero');
     const twoOne = document.getElementById('two-one');
     const twoTwo = document.getElementById('two-two');
-    const formButton = document.getElementById('start');
-    const resetButton = document.getElementById('reset');
     const gameButtons = document.getElementById('ticBtns');
     const allButtons = gameButtons.querySelectorAll('button');
+
+
+    const formButton = document.getElementById('start');
+    const resetButton = document.getElementById('reset');
     const whoWins = document.getElementById('whoWins');
     const form = document.getElementById('menu');
     const playerOneInput = document.getElementById('playerInputNameOne');
@@ -74,15 +78,71 @@ const displayGame = (() => {
     const againstWho = document.getElementById('against-who');
     const pcMenu = document.getElementById('pcMenu');
     const playerInputVsPc = document.getElementById('playerInputNameVsPc');
-    const xBtnPlayerOneVsPc = document.getElementById('xBtnPlayerOneVsPc');
-    const oBtnPlayerOneVsPc = document.getElementById('oBtnPlayerOneVsPc');
+    const xBtnPlayerOneVsPc = document.getElementById('xBtnPlayerVsPc');
+    const oBtnPlayerOneVsPc = document.getElementById('oBtnPlayerVsPc');
     const startBtnVsPc = document.getElementById('startBtnVsPc');
     let playerOneChoice = '';
     let playerTwoChoice = '';
+    let computerChoice = '';
     //create two player objects
     let playerOne = Player(playerOneName, playerOneChoice, true);
     let playerTwo = Player(playerTwoName, playerTwoChoice, false);
+    let pc = computer(computerChoice, false);
     let winner = false;
+
+    //in the pc form 
+    xBtnPlayerOneVsPc.addEventListener('click', () => {
+        playerOneChoice = 'X';
+        computerChoice = 'O';
+        xBtnPlayerOneVsPc.classList.add('buttonChoice');
+        oBtnPlayerOneVsPc.classList.remove('buttonChoice');
+
+    })
+
+    oBtnPlayerOneVsPc.addEventListener('click', () => {
+        playerOneChoice = 'O';
+        computerChoice = 'X';
+        oBtnPlayerOneVsPc.classList.add('buttonChoice');
+        xBtnPlayerOneVsPc.classList.remove('buttonChoice');
+
+    })
+
+    //when click on the pc button click event fires
+    pcBtnChoice.addEventListener('click', () => {
+        //hide the whole screen
+        againstWho.classList.remove('vs-who-display');
+        againstWho.classList.add('vs-who-display-none');
+        playerTwoName.textContent = 'Pc';
+
+        //show the pc menu
+
+        pcMenu.classList.add('menu-display');
+        pcMenu.classList.remove('menu-display-none');
+    })
+
+
+    startBtnVsPc.addEventListener('click', () => {
+        //error logic
+        if (playerInputVsPc.value === '') {
+            return;
+        } else if (playerOneChoice === '') {
+            return;
+        } else {
+            playerOneName.textContent = playerInputVsPc.value.toUpperCase();
+        }
+
+
+        playerOne.score = 0;
+        pc.score = 0;
+        playerOneScore.textContent = `Score:${playerOne.score}`;
+        playerTwoScore.textContent = `Score:${pc.score}`;
+        resetAll();
+        click = false;
+
+        //hide the menu
+        pcMenu.classList.add('menu-display-none');
+        pcMenu.classList.remove('menu-display');
+    })
 
     //the player choice in the form
     xPlayerOne.addEventListener('click', () => {
@@ -158,18 +218,6 @@ const displayGame = (() => {
         form.classList.remove('menu-display-none');
 
 
-    })
-
-    //when click on the pc button click event fires
-    pcBtnChoice.addEventListener('click', () => {
-        //hide the whole screen
-        againstWho.classList.remove('vs-who-display');
-        againstWho.classList.add('vs-who-display-none');
-
-        //show the pc menu
-
-        pcMenu.classList.add('menu-display');
-        pcMenu.classList.remove('menu-display-none');
     })
 
 
