@@ -48,6 +48,11 @@ const displayGame = (() => {
     let playerTwoName = document.getElementById('playerTwoName');
     const playerOneScore = document.getElementById('playerOneScore');
     const playerTwoScore = document.getElementById('playerTwoScore');
+    const ticContainer = document.getElementById('ticBtns');
+    const AllTicBtn = ticContainer.querySelectorAll('button');
+    for (let i = 0; i < AllTicBtn.length; i++) {
+        console.log(AllTicBtn[i]);
+    }
     //button of the grid
     const zeroZero = document.getElementById('zero-zero');
     const zeroOne = document.getElementById('zero-one');
@@ -184,7 +189,7 @@ const displayGame = (() => {
 
 
     //adding info for the players
-    startButton.addEventListener('click', () => {
+    startButton.addEventListener('click', (e) => {
         //error logic
         if (playerOneInput.value === '' || playerTwoInput.value === '') {
             return;
@@ -249,467 +254,98 @@ const displayGame = (() => {
     //the main game logic
     let gameLogic = () => {
 
-        zeroZero.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
+        AllTicBtn.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                if (e.target.id === 'zero-zero') {
+                    
+                    if (playerOne.score >= 3 || playerTwo.score >= 3) {
 
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[0][0] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[0][0] = playerOneChoice;
-                            zeroZero.textContent = GameBoard.board[0][0];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[0][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[0][0] = playerTwoChoice;
-                            zeroZero.textContent = GameBoard.board[0][0];
-                            //add style to the x and the o 
-
-                            if (GameBoard.board[0][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
                         return;
+                    } else {
+                        if (!winner) {
+                            if (GameBoard.board[0][0] === '') {
+                                tieCounter += 1;
+                                if (playerOne.clicked === true) {
+                                    GameBoard.board[0][0] = playerOneChoice;
+                                    GameBoard.board[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                    playerOne.clicked = false;
+                                    playerTwo.clicked = true;
+                                    displayBoard();
+                        
+                                } else if (playerTwo.clicked === true) {
+                                    GameBoard.board[0][0] = playerTwoChoice;
+                                    //add style to the x and the o 
+
+                                    playerTwo.clicked = false;
+                                    playerOne.clicked = true;
+                                    displayBoard();
+
+                                     
+
+                                }
+                            } else {
+                                return;
+                            }
+                        } else {
+                            return;
+                        }
                     }
-                } else {
-                    return;
+
                 }
-            }
-
-
+            })
         })
 
-        zeroOne.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[0][1] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[0][1] = playerOneChoice;
-                            zeroOne.textContent = GameBoard.board[0][1];
-                            //add style to the x and the o 
+        // zeroZero.addEventListener('click', function(e) {
+        //     if (playerOne.score >= 3 || playerTwo.score >= 3) {
+
+        //         return;
+        //     } else {
+        //         if (!winner) {
+        //             if (GameBoard.board[0][0] === '') {
+        //                 tieCounter += 1;
+        //                 if (playerOne.clicked === true) {
+        //                     GameBoard.board[0][0] = playerOneChoice;
+        //                     zeroZero.textContent = GameBoard.board[0][0];
+        //                     //add style to the x and the o
+
+        //                     if (GameBoard.board[0][0] === 'O') {
+        //                         e.target.classList.add('o');
+        //                         e.target.classList.remove('x');
+        //                     } else if (GameBoard.board[0][0] === 'X') {
+        //                         e.target.classList.add('x');
+        //                         e.target.classList.remove('o');
+        //                     }
+
+        //                     playerOne.clicked = false;
+        //                     playerTwo.clicked = true;
+
+        //                 } else if (playerTwo.clicked === true) {
+        //                     GameBoard.board[0][0] = playerTwoChoice;
+        //                     zeroZero.textContent = GameBoard.board[0][0];
+        //                     //add style to the x and the o 
+
+        //                     if (GameBoard.board[0][0] === 'O') {
+        //                         e.target.classList.add('o');
+        //                         e.target.classList.remove('x');
+        //                     } else if (GameBoard.board[0][0] === 'X') {
+        //                         e.target.classList.add('x');
+        //                         e.target.classList.remove('o');
+        //                     }
+
+        //                     playerTwo.clicked = false;
+        //                     playerOne.clicked = true;
+        //                 }
+        //             } else {
+        //                 return;
+        //             }
+        //         } else {
+        //             return;
+        //         }
+        //     }
+
+
+        // })
 
-                            if (GameBoard.board[0][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[0][1] = playerTwoChoice;
-                            zeroOne.textContent = GameBoard.board[0][1];
-
-                            //add style to the x and the o 
-                            if (GameBoard.board[0][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-            }
-
-        })
-
-        zeroTwo.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[0][2] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[0][2] = playerOneChoice;
-                            zeroTwo.textContent = GameBoard.board[0][2];
-                            //add style to the x and the o 
-
-                            if (GameBoard.board[0][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[0][2] = playerTwoChoice;
-                            zeroTwo.textContent = GameBoard.board[0][2];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[0][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[0][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-
-        })
-
-        oneZero.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[1][0] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[1][0] = playerOneChoice;
-                            oneZero.textContent = GameBoard.board[1][0];
-
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[1][0] = playerTwoChoice;
-                            oneZero.textContent = GameBoard.board[1][0];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-
-        })
-
-        oneOne.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-                return;
-            } else {
-
-                if (!winner) {
-                    if (GameBoard.board[1][1] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[1][1] = playerOneChoice;
-                            oneOne.textContent = GameBoard.board[1][1];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[1][1] = playerTwoChoice;
-                            oneOne.textContent = GameBoard.board[1][1];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-        })
-
-        oneTwo.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[1][2] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[1][2] = playerOneChoice;
-                            oneTwo.textContent = GameBoard.board[1][2];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[1][2] = playerTwoChoice;
-                            oneTwo.textContent = GameBoard.board[1][2];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[1][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[1][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-        })
-
-        twoZero.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[2][0] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[2][0] = playerOneChoice;
-                            twoZero.textContent = GameBoard.board[2][0];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[2][0] = playerTwoChoice;
-                            twoZero.textContent = GameBoard.board[2][0];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][0] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][0] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-
-        })
-
-        twoOne.addEventListener('click', function(e) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[2][1] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[2][1] = playerOneChoice;
-                            twoOne.textContent = GameBoard.board[2][1];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[2][1] = playerTwoChoice;
-                            twoOne.textContent = GameBoard.board[2][1];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][1] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][1] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-
-        })
-
-        twoTwo.addEventListener('click', function(e) { //
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-                return;
-            } else {
-                if (!winner) {
-                    if (GameBoard.board[2][2] === '') {
-                        tieCounter += 1;
-                        if (playerOne.clicked === true) {
-                            GameBoard.board[2][2] = playerOneChoice;
-                            twoTwo.textContent = GameBoard.board[2][2];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerOne.clicked = false;
-                            playerTwo.clicked = true;
-
-                        } else if (playerTwo.clicked === true) {
-                            GameBoard.board[2][2] = playerTwoChoice;
-                            twoTwo.textContent = GameBoard.board[2][2];
-                            //add style to the x and the o
-
-                            if (GameBoard.board[2][2] === 'O') {
-                                e.target.classList.add('o');
-                                e.target.classList.remove('x');
-                            } else if (GameBoard.board[2][2] === 'X') {
-                                e.target.classList.add('x');
-                                e.target.classList.remove('o');
-                            }
-
-
-                            playerTwo.clicked = false;
-                            playerOne.clicked = true;
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-
-
-        })
     }
 
 
@@ -849,6 +485,114 @@ const displayGame = (() => {
     //generate random number from 0 to the max number
     let generateRandom = (max) => {
         return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    let displayBoard = () => {
+        for (let i = 0; i < GameBoard.board.length; i++) {
+            for (let j = 0; j < GameBoard.board.length; j++) {
+                if (GameBoard.board[i][j] !== '') {
+                    if (i === 0 && j === 0) {
+                        zeroZero.textContent = GameBoard.board[0][0];
+                        if (GameBoard.board[0][0] === 'O') {
+                            zeroZero.classList.add('o');
+                            zeroZero.classList.remove('x');
+                        } else if (GameBoard.board[0][0] === 'X') {
+                            zeroZero.classList.add('x');
+                            zeroZero.classList.remove('o');
+                        }
+                    }
+                    if (i === 0 && j === 1) {
+                        zeroOne.textContent = GameBoard.board[0][1];
+                        if (GameBoard.board[0][1] === 'O') {
+                            zeroOne.classList.add('o');
+                            zeroOne.classList.remove('x');
+                        } else if (GameBoard.board[0][1] === 'X') {
+                            zeroOne.classList.add('x');
+                            zeroOne.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 0 && j === 2) {
+                        zeroTwo.textContent = GameBoard.board[0][2];
+                        if (GameBoard.board[0][2] === 'O') {
+                            zeroTwo.classList.add('o');
+                            zeroTwo.classList.remove('x');
+                        } else if (GameBoard.board[0][2] === 'X') {
+                            zeroTwo.classList.add('x');
+                            zeroTwo.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 1 && j === 0) {
+                        oneZero.textContent = GameBoard.board[1][0];
+                        if (GameBoard.board[1][0] === 'O') {
+                            oneZero.classList.add('o');
+                            oneZero.classList.remove('x');
+                        } else if (GameBoard.board[1][0] === 'X') {
+                            oneZero.classList.add('x');
+                            oneZero.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 1 && j === 1) {
+                        oneOne.textContent = GameBoard.board[1][1];
+                        if (GameBoard.board[1][1] === 'O') {
+                            oneOne.classList.add('o');
+                            oneOne.classList.remove('x');
+                        } else if (GameBoard.board[1][1] === 'X') {
+                            oneOne.classList.add('x');
+                            oneOne.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 1 && j === 2) {
+                        oneTwo.textContent = GameBoard.board[1][2];
+                        if (GameBoard.board[1][2] === 'O') {
+                            oneTwo.classList.add('o');
+                            oneTwo.classList.remove('x');
+                        } else if (GameBoard.board[1][2] === 'X') {
+                            oneTwo.classList.add('x');
+                            oneTwo.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 2 && j === 0) {
+                        twoZero.textContent = GameBoard.board[2][0];
+                        if (GameBoard.board[2][0] === 'O') {
+                            twoZero.classList.add('o');
+                            twoZero.classList.remove('x');
+                        } else if (GameBoard.board[2][0] === 'X') {
+                            twoZero.classList.add('x');
+                            twoZero.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 2 && j === 1) {
+                        twoOne.textContent = GameBoard.board[2][1];
+                        if (GameBoard.board[2][1] === 'O') {
+                            twoOne.classList.add('o');
+                            twoOne.classList.remove('x');
+                        } else if (GameBoard.board[2][1] === 'X') {
+                            twoOne.classList.add('x');
+                            twoOne.classList.remove('o');
+                        }
+
+                    }
+                    if (i === 2 && j === 2) {
+                        twoTwo.textContent = GameBoard.board[2][2];
+                        if (GameBoard.board[2][2] === 'O') {
+                            twoTwo.classList.add('o');
+                            twoTwo.classList.remove('x');
+                        } else if (GameBoard.board[2][2] === 'X') {
+                            twoTwo.classList.add('x');
+                            twoTwo.classList.remove('o');
+                        }
+
+                    }
+
+                }
+            }
+        }
     }
 
     return {
