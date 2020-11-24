@@ -93,6 +93,9 @@ const displayGame = (() => {
     let playerTwo = Player(playerTwoName, playerTwoChoice, false);
     let pc = computer(computerChoice, false);
     let winner = false;
+    let msg = document.createElement('span'); // create the error msg in the dom 
+    msg.classList.add('erorr-msg-style'); // add the style to any text in the span
+
 
     //in the pc form 
     xBtnPlayerOneVsPc.addEventListener('click', () => {
@@ -128,8 +131,12 @@ const displayGame = (() => {
     startBtnVsPc.addEventListener('click', () => {
         //error logic
         if (playerInputVsPc.value === '') {
+            msg.textContent = 'Please Put the Player Name';
+            pcMenu.appendChild(msg);
             return;
         } else if (playerOneChoice === '') {
+            msg.textContent = 'Please Select the player choice';
+            pcMenu.appendChild(msg);
             return;
         } else {
             playerOneName.textContent = playerInputVsPc.value.toUpperCase();
@@ -190,13 +197,19 @@ const displayGame = (() => {
     //adding info for the players
     startButton.addEventListener('click', (e) => {
         //error logic
+
         if (playerOneInput.value === '' || playerTwoInput.value === '') {
+            msg.textContent = 'Please Put the Players Name';
+            form.appendChild(msg);
             return;
         } else if (playerOneChoice === '' || playerTwoChoice === '') {
+            msg.textContent = 'Please Select the players choice';
+            form.appendChild(msg);
             return;
         } else {
             playerOneName.textContent = playerOneInput.value.toUpperCase();
             playerTwoName.textContent = playerTwoInput.value.toUpperCase();
+            msg.textContent = '';
         }
 
 

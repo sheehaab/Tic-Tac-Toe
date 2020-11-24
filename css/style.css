@@ -278,3 +278,9 @@ main .who-wins span{
 	transform: translateY(-1000px);
 
 }
+
+.erorr-msg-style{
+	text-shadow: 0 0 5px #fffd, 0 0 20px #fffd, 0 0 100px #ff002f, 0 0 80px #e1002a, 0 0 5px #f0002d, 0 0 20px #f9002e, 0 0 100px #ff002f;
+	color: #FFF;
+	margin-top: 10px;
+}
