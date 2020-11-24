@@ -50,9 +50,7 @@ const displayGame = (() => {
     const playerTwoScore = document.getElementById('playerTwoScore');
     const ticContainer = document.getElementById('ticBtns');
     const AllTicBtn = ticContainer.querySelectorAll('button');
-    for (let i = 0; i < AllTicBtn.length; i++) {
-        console.log(AllTicBtn[i]);
-    }
+
     //button of the grid
     const zeroZero = document.getElementById('zero-zero');
     const zeroOne = document.getElementById('zero-one');
@@ -86,6 +84,7 @@ const displayGame = (() => {
     const xBtnPlayerOneVsPc = document.getElementById('xBtnPlayerVsPc');
     const oBtnPlayerOneVsPc = document.getElementById('oBtnPlayerVsPc');
     const startBtnVsPc = document.getElementById('startBtnVsPc');
+    let XOArray = GameBoard.board;
     let playerOneChoice = '';
     let playerTwoChoice = '';
     let computerChoice = '';
@@ -256,95 +255,343 @@ const displayGame = (() => {
 
         AllTicBtn.forEach((button) => {
             button.addEventListener('click', (e) => {
-                if (e.target.id === 'zero-zero') {
-                    
-                    if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                    if (e.target.id === 'zero-zero') {
 
-                        return;
-                    } else {
-                        if (!winner) {
-                            if (GameBoard.board[0][0] === '') {
-                                tieCounter += 1;
-                                if (playerOne.clicked === true) {
-                                    GameBoard.board[0][0] = playerOneChoice;
-                                    GameBoard.board[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                    playerOne.clicked = false;
-                                    playerTwo.clicked = true;
-                                    displayBoard();
-                        
-                                } else if (playerTwo.clicked === true) {
-                                    GameBoard.board[0][0] = playerTwoChoice;
-                                    //add style to the x and the o 
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[0][0] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[0][0] = playerOneChoice;
 
-                                    playerTwo.clicked = false;
-                                    playerOne.clicked = true;
-                                    displayBoard();
+                                        if (computerChoice !== '') {
+                                                XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
 
-                                     
+                                        displayBoard();
 
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[0][0] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
                                 }
                             } else {
                                 return;
                             }
-                        } else {
-                            return;
                         }
+
                     }
 
-                }
-            })
+                    if (e.target.id === 'zero-one') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[0][1] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[0][1] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[0][1] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'zero-two') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[0][2] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[0][2] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[0][2] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'one-zero') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[1][0] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[1][0] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[1][0] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'one-one') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[1][1] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[1][1] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[1][1] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'one-two') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[1][2] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[1][2] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[1][2] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'two-zero') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[2][0] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[2][0] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[2][0] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'two-one') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[2][1] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[2][1] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[2][1] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                    if (e.target.id === 'two-two') {
+
+                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                            return;
+                        } else {
+                            if (!winner) {
+                                if (XOArray[2][2] === '') {
+                                    tieCounter += 1;
+                                    if (playerOne.clicked === true) {
+                                        XOArray[2][2] = playerOneChoice;
+
+                                        if (computerChoice !== '') {
+                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
+                                        } else {
+                                            playerOne.clicked = false;
+                                            playerTwo.clicked = true;
+                                        }
+                                        displayBoard();
+
+                                    } else if (playerTwo.clicked === true) {
+                                        XOArray[2][2] = playerTwoChoice;
+                                        //add style to the x and the o 
+
+                                        playerTwo.clicked = false;
+                                        playerOne.clicked = true;
+                                        displayBoard();
+                                    }
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+
+                    }
+
+                }) //end buttons event
         })
-
-        // zeroZero.addEventListener('click', function(e) {
-        //     if (playerOne.score >= 3 || playerTwo.score >= 3) {
-
-        //         return;
-        //     } else {
-        //         if (!winner) {
-        //             if (GameBoard.board[0][0] === '') {
-        //                 tieCounter += 1;
-        //                 if (playerOne.clicked === true) {
-        //                     GameBoard.board[0][0] = playerOneChoice;
-        //                     zeroZero.textContent = GameBoard.board[0][0];
-        //                     //add style to the x and the o
-
-        //                     if (GameBoard.board[0][0] === 'O') {
-        //                         e.target.classList.add('o');
-        //                         e.target.classList.remove('x');
-        //                     } else if (GameBoard.board[0][0] === 'X') {
-        //                         e.target.classList.add('x');
-        //                         e.target.classList.remove('o');
-        //                     }
-
-        //                     playerOne.clicked = false;
-        //                     playerTwo.clicked = true;
-
-        //                 } else if (playerTwo.clicked === true) {
-        //                     GameBoard.board[0][0] = playerTwoChoice;
-        //                     zeroZero.textContent = GameBoard.board[0][0];
-        //                     //add style to the x and the o 
-
-        //                     if (GameBoard.board[0][0] === 'O') {
-        //                         e.target.classList.add('o');
-        //                         e.target.classList.remove('x');
-        //                     } else if (GameBoard.board[0][0] === 'X') {
-        //                         e.target.classList.add('x');
-        //                         e.target.classList.remove('o');
-        //                     }
-
-        //                     playerTwo.clicked = false;
-        //                     playerOne.clicked = true;
-        //                 }
-        //             } else {
-        //                 return;
-        //             }
-        //         } else {
-        //             return;
-        //         }
-        //     }
-
-
-        // })
 
     }
 
@@ -374,19 +621,19 @@ const displayGame = (() => {
                             if (playerOne.score <= 3 || playerTwo.score <= 3) {
                                 if (winner === false) {
 
-                                    outer: for (let i = 0; i < GameBoard.board.length; i++) {
+                                    outer: for (let i = 0; i < XOArray.length; i++) {
 
-                                            for (let j = 0; j < GameBoard.board.length; j++) {
+                                            for (let j = 0; j < XOArray.length; j++) {
 
                                                 //row win
-                                                if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j] === GameBoard.board[i][j - 1]) {
-                                                    if (GameBoard.board[i][j] !== '') {
-                                                        if (GameBoard.board[i][j] === playerOneChoice) {
+                                                if (XOArray[i][j] === XOArray[i][j + 1] && XOArray[i][j] === XOArray[i][j - 1]) {
+                                                    if (XOArray[i][j] !== '') {
+                                                        if (XOArray[i][j] === playerOneChoice) {
                                                             whoWins.textContent = `${playerOneName.textContent} wins`;
                                                             playerOne.score += 1;
                                                             playerOneScore.textContent = `Score:${playerOne.score}`;
 
-                                                        } else if (GameBoard.board[i][j] === playerTwoChoice) {
+                                                        } else if (XOArray[i][j] === playerTwoChoice) {
                                                             whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                             playerTwo.score += 1;
                                                             playerTwoScore.textContent = `Score:${playerTwo.score}`;
@@ -398,14 +645,14 @@ const displayGame = (() => {
 
 
                                                 //column win
-                                                if (GameBoard.board[1][j] === GameBoard.board[0][j] && GameBoard.board[1][j] === GameBoard.board[2][j]) {
-                                                    if (GameBoard.board[1][j] !== '') {
-                                                        if (GameBoard.board[1][j] === playerOneChoice) {
+                                                if (XOArray[1][j] === XOArray[0][j] && XOArray[1][j] === XOArray[2][j]) {
+                                                    if (XOArray[1][j] !== '') {
+                                                        if (XOArray[1][j] === playerOneChoice) {
                                                             whoWins.textContent = `${playerOneName.textContent} wins`;
                                                             playerOne.score += 1;
                                                             playerOneScore.textContent = `Score:${playerOne.score}`;
                                                             break outer;
-                                                        } else if (GameBoard.board[1][j] === playerTwoChoice) {
+                                                        } else if (XOArray[1][j] === playerTwoChoice) {
                                                             whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                             playerTwo.score += 1;
                                                             playerTwoScore.textContent = `Score:${playerTwo.score}`;
@@ -421,13 +668,13 @@ const displayGame = (() => {
                                         } //outer for loop
 
                                     //x wins
-                                        if (GameBoard.board[1][1] === GameBoard.board[0][0] && GameBoard.board[1][1] === GameBoard.board[2][2]) {
-                                            if (GameBoard.board[0][0] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][2] !== '') {
-                                                if (GameBoard.board[1][1] === playerOneChoice) {
+                                        if (XOArray[1][1] === XOArray[0][0] && XOArray[1][1] === XOArray[2][2]) {
+                                            if (XOArray[0][0] !== '' && XOArray[1][1] !== '' && XOArray[2][2] !== '') {
+                                                if (XOArray[1][1] === playerOneChoice) {
                                                     whoWins.textContent = `${playerOneName.textContent} wins`;
                                                     playerOne.score += 1;
                                                     playerOneScore.textContent = `Score:${playerOne.score}`;
-                                                } else if (GameBoard.board[1][1] === playerTwoChoice) {
+                                                } else if (XOArray[1][1] === playerTwoChoice) {
                                                     whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                     playerTwo.score += 1;
                                                     playerTwoScore.textContent = `Score:${playerTwo.score}`;
@@ -437,13 +684,13 @@ const displayGame = (() => {
                                         }
 
                                         //reverse x wins
-                                    if (GameBoard.board[1][1] === GameBoard.board[0][2] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
-                                        if (GameBoard.board[0][2] !== '' && GameBoard.board[1][1] !== '' && GameBoard.board[2][0] !== '') {
-                                            if (GameBoard.board[1][1] === playerOneChoice) {
+                                    if (XOArray[1][1] === XOArray[0][2] && XOArray[1][1] === XOArray[2][0]) {
+                                        if (XOArray[0][2] !== '' && XOArray[1][1] !== '' && XOArray[2][0] !== '') {
+                                            if (XOArray[1][1] === playerOneChoice) {
                                                 whoWins.textContent = `${playerOneName.textContent} wins`;
                                                 playerOne.score += 1;
                                                 playerOneScore.textContent = `Score:${playerOne.score}`;
-                                            } else if (GameBoard.board[1][1] === playerTwoChoice) {
+                                            } else if (XOArray[1][1] === playerTwoChoice) {
                                                 whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                 playerTwo.score += 1;
                                                 playerTwoScore.textContent = `Score:${playerTwo.score}`;
@@ -469,9 +716,9 @@ const displayGame = (() => {
 
     //function to reset the game
     let resetAll = () => {
-        for (let i = 0; i < GameBoard.board.length; i++) {
-            for (let j = 0; j < GameBoard.board.length; j++) {
-                GameBoard.board[i][j] = '';
+        for (let i = 0; i < XOArray.length; i++) {
+            for (let j = 0; j < XOArray.length; j++) {
+                XOArray[i][j] = '';
                 allButtons.forEach((btn) => {
                     btn.textContent = '';
                 })
@@ -488,102 +735,104 @@ const displayGame = (() => {
     }
 
     let displayBoard = () => {
-        for (let i = 0; i < GameBoard.board.length; i++) {
-            for (let j = 0; j < GameBoard.board.length; j++) {
-                if (GameBoard.board[i][j] !== '') {
+        for (let i = 0; i < XOArray.length; i++) {
+           
+
+            for (let j = 0; j < XOArray.length; j++) {
+                if (XOArray[i][j] !== '') {
                     if (i === 0 && j === 0) {
-                        zeroZero.textContent = GameBoard.board[0][0];
-                        if (GameBoard.board[0][0] === 'O') {
+                        zeroZero.textContent = XOArray[0][0];
+                        if (XOArray[0][0] === 'O') {
                             zeroZero.classList.add('o');
                             zeroZero.classList.remove('x');
-                        } else if (GameBoard.board[0][0] === 'X') {
+                        } else if (XOArray[0][0] === 'X') {
                             zeroZero.classList.add('x');
                             zeroZero.classList.remove('o');
                         }
                     }
                     if (i === 0 && j === 1) {
-                        zeroOne.textContent = GameBoard.board[0][1];
-                        if (GameBoard.board[0][1] === 'O') {
+                        zeroOne.textContent = XOArray[0][1];
+                        if (XOArray[0][1] === 'O') {
                             zeroOne.classList.add('o');
                             zeroOne.classList.remove('x');
-                        } else if (GameBoard.board[0][1] === 'X') {
+                        } else if (XOArray[0][1] === 'X') {
                             zeroOne.classList.add('x');
                             zeroOne.classList.remove('o');
                         }
 
                     }
                     if (i === 0 && j === 2) {
-                        zeroTwo.textContent = GameBoard.board[0][2];
-                        if (GameBoard.board[0][2] === 'O') {
+                        zeroTwo.textContent = XOArray[0][2];
+                        if (XOArray[0][2] === 'O') {
                             zeroTwo.classList.add('o');
                             zeroTwo.classList.remove('x');
-                        } else if (GameBoard.board[0][2] === 'X') {
+                        } else if (XOArray[0][2] === 'X') {
                             zeroTwo.classList.add('x');
                             zeroTwo.classList.remove('o');
                         }
 
                     }
                     if (i === 1 && j === 0) {
-                        oneZero.textContent = GameBoard.board[1][0];
-                        if (GameBoard.board[1][0] === 'O') {
+                        oneZero.textContent = XOArray[1][0];
+                        if (XOArray[1][0] === 'O') {
                             oneZero.classList.add('o');
                             oneZero.classList.remove('x');
-                        } else if (GameBoard.board[1][0] === 'X') {
+                        } else if (XOArray[1][0] === 'X') {
                             oneZero.classList.add('x');
                             oneZero.classList.remove('o');
                         }
 
                     }
                     if (i === 1 && j === 1) {
-                        oneOne.textContent = GameBoard.board[1][1];
-                        if (GameBoard.board[1][1] === 'O') {
+                        oneOne.textContent = XOArray[1][1];
+                        if (XOArray[1][1] === 'O') {
                             oneOne.classList.add('o');
                             oneOne.classList.remove('x');
-                        } else if (GameBoard.board[1][1] === 'X') {
+                        } else if (XOArray[1][1] === 'X') {
                             oneOne.classList.add('x');
                             oneOne.classList.remove('o');
                         }
 
                     }
                     if (i === 1 && j === 2) {
-                        oneTwo.textContent = GameBoard.board[1][2];
-                        if (GameBoard.board[1][2] === 'O') {
+                        oneTwo.textContent = XOArray[1][2];
+                        if (XOArray[1][2] === 'O') {
                             oneTwo.classList.add('o');
                             oneTwo.classList.remove('x');
-                        } else if (GameBoard.board[1][2] === 'X') {
+                        } else if (XOArray[1][2] === 'X') {
                             oneTwo.classList.add('x');
                             oneTwo.classList.remove('o');
                         }
 
                     }
                     if (i === 2 && j === 0) {
-                        twoZero.textContent = GameBoard.board[2][0];
-                        if (GameBoard.board[2][0] === 'O') {
+                        twoZero.textContent = XOArray[2][0];
+                        if (XOArray[2][0] === 'O') {
                             twoZero.classList.add('o');
                             twoZero.classList.remove('x');
-                        } else if (GameBoard.board[2][0] === 'X') {
+                        } else if (XOArray[2][0] === 'X') {
                             twoZero.classList.add('x');
                             twoZero.classList.remove('o');
                         }
 
                     }
                     if (i === 2 && j === 1) {
-                        twoOne.textContent = GameBoard.board[2][1];
-                        if (GameBoard.board[2][1] === 'O') {
+                        twoOne.textContent = XOArray[2][1];
+                        if (XOArray[2][1] === 'O') {
                             twoOne.classList.add('o');
                             twoOne.classList.remove('x');
-                        } else if (GameBoard.board[2][1] === 'X') {
+                        } else if (XOArray[2][1] === 'X') {
                             twoOne.classList.add('x');
                             twoOne.classList.remove('o');
                         }
 
                     }
                     if (i === 2 && j === 2) {
-                        twoTwo.textContent = GameBoard.board[2][2];
-                        if (GameBoard.board[2][2] === 'O') {
+                        twoTwo.textContent = XOArray[2][2];
+                        if (XOArray[2][2] === 'O') {
                             twoTwo.classList.add('o');
                             twoTwo.classList.remove('x');
-                        } else if (GameBoard.board[2][2] === 'X') {
+                        } else if (XOArray[2][2] === 'X') {
                             twoTwo.classList.add('x');
                             twoTwo.classList.remove('o');
                         }
