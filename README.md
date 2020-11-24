@@ -1,7 +1,5 @@
 # Tic Tac Toe
-This a simple Tic-Tac-Toe to play with your friends, I enjoyed making this project and upload it, You could choice one of two choices, Multiplayer or Play agains PC, You choose X or O, The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner,
-To win the game you must win three rounds.
-I learned so much from it and how objects works in javaScript and it improves my skills in DOM and objects manipulation.
+This a simple Tic-Tac-Toe to play with your friends, I enjoyed making this project and upload it, You could choose one of two choices, Multiplayer or Play against PC, You choose X or O, The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner, To win the game you must win three rounds. I learned so much from it and how objects work in JavaScript and it improves my skills in DOM and objects manipulation.
 
 ## Table of contents
 
@@ -15,7 +13,7 @@ I learned so much from it and how objects works in javaScript and it improves my
 * [Contact](#contact)
 
 ## General info
-I made this project to improve my skills in javaScript in general, Also to specifcally improve the knowledge of objects in javaScript and how the constructor is used in javaScript, Also learn about factories and module design pattern and when to use factories and module, It was so much fun and intersting journey to make it.
+I made this project to improve my skills in javaScript in general, Also to specifically improve the knowledge of objects in javaScript and how the constructor is used in javaScript, Also learn about factories and module design pattern and when to use factories and module, It was so much fun and interesting journey to make it.
 
 ## Screenshots
 ![The Main Screen](images/outer-view.jpg)
