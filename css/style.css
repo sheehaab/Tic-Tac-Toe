@@ -280,7 +280,7 @@ main .who-wins span{
 }
 
 .erorr-msg-style{
-	text-shadow: 0 0 5px #fffd, 0 0 20px #fffd, 0 0 100px #ff002f, 0 0 80px #e1002a, 0 0 5px #f0002d, 0 0 20px #f9002e, 0 0 100px #ff002f;
+	text-shadow: 0 0 10px #fffd, 0 0 20px #fffd, 0 0 30px #f24061, 0 0 40px #f24061, 0 0 50px #f24061, 0 0 60px #f24061, 0 0 70px #f24061;
 	color: #FFF;
 	margin-top: 10px;
 }
