@@ -257,7 +257,7 @@ const displayGame = (() => {
             button.addEventListener('click', (e) => {
                     if (e.target.id === 'zero-zero') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -267,8 +267,17 @@ const displayGame = (() => {
                                         XOArray[0][0] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                                XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
@@ -277,8 +286,6 @@ const displayGame = (() => {
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[0][0] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -295,7 +302,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'zero-one') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -305,8 +312,17 @@ const displayGame = (() => {
                                         XOArray[0][1] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
@@ -315,8 +331,6 @@ const displayGame = (() => {
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[0][1] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -333,7 +347,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'zero-two') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -343,17 +357,25 @@ const displayGame = (() => {
                                         XOArray[0][2] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[0][2] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -370,7 +392,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'one-zero') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -380,17 +402,25 @@ const displayGame = (() => {
                                         XOArray[1][0] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[1][0] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -407,7 +437,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'one-one') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -417,17 +447,25 @@ const displayGame = (() => {
                                         XOArray[1][1] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[1][1] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -444,7 +482,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'one-two') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -454,17 +492,25 @@ const displayGame = (() => {
                                         XOArray[1][2] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[1][2] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -481,7 +527,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'two-zero') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -491,17 +537,25 @@ const displayGame = (() => {
                                         XOArray[2][0] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[2][0] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -518,7 +572,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'two-one') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -528,17 +582,25 @@ const displayGame = (() => {
                                         XOArray[2][1] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[2][1] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -555,7 +617,7 @@ const displayGame = (() => {
 
                     if (e.target.id === 'two-two') {
 
-                        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+                        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                             return;
                         } else {
                             if (!winner) {
@@ -565,17 +627,25 @@ const displayGame = (() => {
                                         XOArray[2][2] = playerOneChoice;
 
                                         if (computerChoice !== '') {
-                                            XOArray[generateRandom(3)][generateRandom(3)] = computerChoice;
-                                        } else {
+                                            outer: for (let i = 0; i < XOArray.length; i++) {
+                                                for (let j = 0; j < XOArray.length; j++) {
+                                                    if (XOArray[i][j] === '') {
+                                                        XOArray[i][j] = computerChoice;
+                                                        break outer;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                        else {
                                             playerOne.clicked = false;
                                             playerTwo.clicked = true;
                                         }
+
                                         displayBoard();
 
                                     } else if (playerTwo.clicked === true) {
                                         XOArray[2][2] = playerTwoChoice;
-                                        //add style to the x and the o 
-
                                         playerTwo.clicked = false;
                                         playerOne.clicked = true;
                                         displayBoard();
@@ -589,7 +659,6 @@ const displayGame = (() => {
                         }
 
                     }
-
                 }) //end buttons event
         })
 
@@ -618,7 +687,7 @@ const displayGame = (() => {
                     //add click event to every button
                     btn.addEventListener('click', function(e) {
 
-                            if (playerOne.score <= 3 || playerTwo.score <= 3) {
+                            if (playerOne.score <= 3 || playerTwo.score <= 3 || pc.score <= 3) {
                                 if (winner === false) {
 
                                     outer: for (let i = 0; i < XOArray.length; i++) {
@@ -637,6 +706,12 @@ const displayGame = (() => {
                                                             whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                             playerTwo.score += 1;
                                                             playerTwoScore.textContent = `Score:${playerTwo.score}`;
+
+                                                        } else if (XOArray[i][j] === computerChoice) {
+                                                            whoWins.textContent = `pc wins`;
+                                                            pc.score += 1;
+                                                            playerTwoScore.textContent = `Score:${pc.score}`;
+                                                            console.log(pc.score);
 
                                                         }
                                                         winner = true;
@@ -657,6 +732,14 @@ const displayGame = (() => {
                                                             playerTwo.score += 1;
                                                             playerTwoScore.textContent = `Score:${playerTwo.score}`;
                                                             break outer;
+                                                        } else if (XOArray[1][j] === computerChoice) {
+                                                            whoWins.textContent = `pc wins`;
+                                                            pc.score += 1;
+                                                            playerTwoScore.textContent = `Score:${pc.score}`;
+                                                            console.log(pc.score);
+
+                                                            break outer;
+
                                                         }
                                                         winner = true;
                                                     }
@@ -678,6 +761,12 @@ const displayGame = (() => {
                                                     whoWins.textContent = `${playerTwoName.textContent} wins`;
                                                     playerTwo.score += 1;
                                                     playerTwoScore.textContent = `Score:${playerTwo.score}`;
+                                                } else if (XOArray[1][1] === computerChoice) {
+                                                    whoWins.textContent = `pc wins`;
+                                                    pc.score += 1;
+                                                    playerTwoScore.textContent = `Score:${pc.score}`;
+                                                    console.log(pc.score);
+
                                                 }
                                                 winner = true;
                                             }
@@ -724,19 +813,14 @@ const displayGame = (() => {
                 })
             }
         }
-        winner = false;
-        tieCounter = 0;
-        whoWins.textContent = '';
-    }
-
-    //generate random number from 0 to the max number
-    let generateRandom = (max) => {
-        return Math.floor(Math.random() * Math.floor(max));
+        winner = false; //Make no winner
+        tieCounter = 0; //reset the counter
+        whoWins.textContent = ''; //the who wins in the dom reset
     }
 
     let displayBoard = () => {
         for (let i = 0; i < XOArray.length; i++) {
-           
+
 
             for (let j = 0; j < XOArray.length; j++) {
                 if (XOArray[i][j] !== '') {
