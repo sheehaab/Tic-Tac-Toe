@@ -29,7 +29,7 @@ I made this project to improve my skills in javaScript in general, Also to speci
 * CSS
 
 ## Setup
-
+If you wanna to check the game go to this live preview --> https://htmlpreview.github.io/?https://github.com/sheehaab/Tic-Tac-Toe/blob/master/index.html
 
 ## Features
 List of features ready and TODOs for future development
