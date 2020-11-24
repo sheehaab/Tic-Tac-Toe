@@ -1,5 +1,6 @@
 # Tic Tac Toe
-Description
+This a simple Tic-Tac-Toe to play with your friends, I enjoyed making this project and upload it, You could choice one of two choices, Multiplayer or Play agains PC, You choose X or O, The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
+Learn so much from it and how objects workd in javaScript and it improves my skills in DOM and objects manipulation.
 
 ## Table of contents
 
