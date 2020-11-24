@@ -205,6 +205,7 @@ const displayGame = (() => {
         playerOneScore.textContent = `Score:${playerOne.score}`;
         playerTwoScore.textContent = `Score:${playerTwo.score}`;
         resetAll();
+        computerChoice = '';
         click = false;
 
         //hide the menu
@@ -230,13 +231,21 @@ const displayGame = (() => {
     //to know wether the button is clicked after one of the player is win over three rounds
     window.addEventListener('click', () => {
         if (!click) {
-            if (playerOne.score >= 3 || playerTwo.score >= 3) {
+            if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
                 if (playerOne.score > playerTwo.score) {
                     whoWins.textContent = `The winner is ${playerOneName.textContent} 
-                    Press the restart game to play again`;
-                } else {
+                    Press the Start button to play again`;
+                } else  {
                     whoWins.textContent = `The winner is ${playerTwoName.textContent} 
-                    Press the restart game to play again`;
+                    Press the Start button to play again`;
+                }
+
+                if(playerOne.score > pc.score){
+                    whoWins.textContent = `The winner is ${playerOneName.textContent} 
+                    Press the Start button to play again`;
+                }else{
+                    whoWins.textContent = `The winner is pc 
+                    Press the Start button to play again`;
                 }
                 click = true;
                 winner = true;
@@ -666,12 +675,13 @@ const displayGame = (() => {
 
 
     formButton.addEventListener('click', () => {
-        form.classList.add('menu-display');
-        form.classList.remove('menu-display-none');
+        againstWho.classList.add('vs-who-display');
+        againstWho.classList.remove('vs-who-display-none');
+        
     })
 
     resetButton.addEventListener('click', () => {
-        if (playerOne.score >= 3 || playerTwo.score >= 3) {
+        if (playerOne.score >= 3 || playerTwo.score >= 3 || pc.score >= 3) {
             return;
         } else {
             resetAll();
