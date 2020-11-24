@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, intial-scale=1">
+		<title>Tic-Tac-Toe</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"> 
+	</head>
+	<body>
+		<main>
+			<div class="score-container">
+				<div class="player">
+					<span id="playerOneName">Player1</span>
+					<span id="playerOneScore">Score:0</span>
+				</div>
+				<div class="player">
+					<span id="playerTwoName">Player2</span>
+					<span id="playerTwoScore">Score:0</span>
+					
+				</div>
+			</div>
+			<div class="start-container">
+				<button id='start'>Start</button>
+				<button type="" id='reset'>reset</button>
+			</div>
+			<div class="tic-container" id="ticBtns">
+				<div class="row1" id="zero">
+					<button class="column1" id="zero-zero"></button>
+					<button class="column2" id="zero-one"></button>
+					<button class="column3" id="zero-two"></button>
+				</div>
+
+				<div class="row2" id="one">
+					<button class="column1" id="one-zero"></button>
+					<button class="column2" id="one-one"></button>
+					<button class="column3" id="one-two"></button>
+				</div>
+
+				<div class="row3" id="two">
+					<button class="column1" id="two-zero"></button>
+					<button class="column2" id="two-one"></button>
+					<button class="column3" id="two-two"></button>
+				</div>
+			</div>
+			<div class="who-wins" >
+				<span id='whoWins'></span>
+			</div>
+		</main>
+
+
+
+
+		<!-- menu to choose the name and the players choice from x and o-->s
+		<div class="menu menu-display-none" id="menu">
+			<div class="playerName">
+				<label><input type="input" name="playertwoName" placeholder="player1" id="playerInputNameOne"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerOne">X</button>
+					<button type="" id="oBtnPlayerOne">O</button>
+				</div>
+			</div>
+
+			<div class="playerName">
+				<label><input type="input" name="playeroneName" placeholder="player2" id="playerInputNameTwo"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerTwo">X</button>
+					<button type="" id="oBtnPlayerTwo">O</button>
+				</div>
+			</div>
+
+			<button type="" class="start" id="startBtn">Start!</button>
+		</div>
+
+		<!-- vs pc menu -->
+		<div class="pc-menu menu-display-none" id="pcMenu">
+			<div class="playerName">
+				<label><input type="input" name="playertwoName" placeholder="player1" id="playerInputNameVsPc"></label>
+				<div class="buttons">
+					<button type="" id="xBtnPlayerVsPc">X</button>
+					<button type="" id="oBtnPlayerVsPc">O</button>
+				</div>
+			</div>
+
+			<button type="" class="start" id="startBtnVsPc">Start!</button>
+		</div>
+
+		<!-- first menu to choose play with player or pc-->
+		<div class="vs-who" id="against-who">
+			<h2>You wanna play against</h2>
+			<div class="choice">
+				<button class="player" id="player-choice">player</button>
+				<button class="pc" id="pc-choice">pc</button>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>
